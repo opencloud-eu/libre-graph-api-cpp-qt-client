@@ -36,12 +36,12 @@ void OAITagsApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis.rolling.owncloud.works/graph"),
-    "ownCloud Infinite Scale Rolling Release",
+    QUrl("https://localhost:9200/graph"),
+    "OpenCloud Development Setup",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph"),
-    "ownCloud Infinite Scale Development Setup",
+    QUrl("https://cloud.example.test/graph"),
+    "OpenCloud Example Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("assignTags", defaultConf);
     _serverIndices.insert("assignTags", 0);
