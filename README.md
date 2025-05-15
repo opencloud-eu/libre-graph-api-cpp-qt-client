@@ -4,7 +4,7 @@
 
 Libre Graph API
 
-- API version: v1.0.4
+- API version: v1.0.5
 
 Libre Graph is a free API for cloud collaboration inspired by the MS Graph API.
 
