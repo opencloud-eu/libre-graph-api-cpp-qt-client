@@ -99,11 +99,13 @@ HEADERS += \
     $${PWD}/OAIMeDriveRootApi.h \
     $${PWD}/OAIMeDriveRootChildrenApi.h \
     $${PWD}/OAIMeDrivesApi.h \
+    $${PWD}/OAIMePhotoApi.h \
     $${PWD}/OAIMeUserApi.h \
     $${PWD}/OAIRoleManagementApi.h \
     $${PWD}/OAITagsApi.h \
     $${PWD}/OAIUserApi.h \
     $${PWD}/OAIUserAppRoleAssignmentApi.h \
+    $${PWD}/OAIUserPhotoApi.h \
     $${PWD}/OAIUsersApi.h \
 # Others
     $${PWD}/OAIHelpers.h \
@@ -214,11 +216,13 @@ SOURCES += \
     $${PWD}/OAIMeDriveRootApi.cpp \
     $${PWD}/OAIMeDriveRootChildrenApi.cpp \
     $${PWD}/OAIMeDrivesApi.cpp \
+    $${PWD}/OAIMePhotoApi.cpp \
     $${PWD}/OAIMeUserApi.cpp \
     $${PWD}/OAIRoleManagementApi.cpp \
     $${PWD}/OAITagsApi.cpp \
     $${PWD}/OAIUserApi.cpp \
     $${PWD}/OAIUserAppRoleAssignmentApi.cpp \
+    $${PWD}/OAIUserPhotoApi.cpp \
     $${PWD}/OAIUsersApi.cpp \
 # Others
     $${PWD}/OAIHelpers.cpp \

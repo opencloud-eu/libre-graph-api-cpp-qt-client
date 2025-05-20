@@ -122,11 +122,13 @@ add_library(client
     OAIMeDriveRootApi.cpp
     OAIMeDriveRootChildrenApi.cpp
     OAIMeDrivesApi.cpp
+    OAIMePhotoApi.cpp
     OAIMeUserApi.cpp
     OAIRoleManagementApi.cpp
     OAITagsApi.cpp
     OAIUserApi.cpp
     OAIUserAppRoleAssignmentApi.cpp
+    OAIUserPhotoApi.cpp
     OAIUsersApi.cpp
     OAIHelpers.cpp
     OAIHttpRequest.cpp
@@ -248,11 +250,13 @@ set(HEADER
     OAIMeDriveRootApi.h
     OAIMeDriveRootChildrenApi.h
     OAIMeDrivesApi.h
+    OAIMePhotoApi.h
     OAIMeUserApi.h
     OAIRoleManagementApi.h
     OAITagsApi.h
     OAIUserApi.h
     OAIUserAppRoleAssignmentApi.h
+    OAIUserPhotoApi.h
     OAIUsersApi.h
     OAIEnum.h
     OAIHelpers.h

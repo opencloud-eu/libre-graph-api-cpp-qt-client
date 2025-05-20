@@ -142,6 +142,8 @@ client/OAIMeDriveRootChildrenApi.cpp
 client/OAIMeDriveRootChildrenApi.h
 client/OAIMeDrivesApi.cpp
 client/OAIMeDrivesApi.h
+client/OAIMePhotoApi.cpp
+client/OAIMePhotoApi.h
 client/OAIMeUserApi.cpp
 client/OAIMeUserApi.h
 client/OAIMember_Reference.cpp
@@ -211,6 +213,8 @@ client/OAIUserApi.cpp
 client/OAIUserApi.h
 client/OAIUserAppRoleAssignmentApi.cpp
 client/OAIUserAppRoleAssignmentApi.h
+client/OAIUserPhotoApi.cpp
+client/OAIUserPhotoApi.h
 client/OAIUserUpdate.cpp
 client/OAIUserUpdate.h
 client/OAIUsersApi.cpp
