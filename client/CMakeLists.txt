@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.5)
 string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]" APP_VERSION "v1.0.5")
 string(REGEX REPLACE " " "" TARGET_NAME "Libre Graph API")
 
