@@ -303,7 +303,7 @@ void OAIDrivesGetDrivesApi::listAllDrivesCallback(OAIHttpRequestWorker *worker) 
     }
 }
 
-void OAIDrivesGetDrivesApi::listAllDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter) {
+void OAIDrivesGetDrivesApi::listAllDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<QString> &expand) {
     QString fullPath = QString(_serverConfigs["listAllDrivesBeta"][_serverIndices.value("listAllDrivesBeta")].URL()+"/v1beta1/drives");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
@@ -341,6 +341,21 @@ void OAIDrivesGetDrivesApi::listAllDrivesBeta(const ::OpenAPI::OptionalParam<QSt
             fullPath.append("?");
 
         fullPath.append(QUrl::toPercentEncoding("$filter")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(filter.value())));
+    }
+    if (expand.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$expand", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("$expand")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(expand.value())));
     }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

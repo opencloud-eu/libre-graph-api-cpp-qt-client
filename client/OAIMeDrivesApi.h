@@ -70,8 +70,9 @@ public:
     /**
     * @param[in]  orderby QString [optional]
     * @param[in]  filter QString [optional]
+    * @param[in]  expand QString [optional]
     */
-    void listMyDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>());
+    void listMyDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &expand = ::OpenAPI::OptionalParam<QString>());
 
 
 private:
