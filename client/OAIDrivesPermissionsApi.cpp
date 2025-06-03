@@ -591,7 +591,7 @@ void OAIDrivesPermissionsApi::inviteCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDrivesPermissionsApi::listPermissions(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<QSet<QString>> &select) {
+void OAIDrivesPermissionsApi::listPermissions(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<bool> &count, const ::OpenAPI::OptionalParam<qint32> &top) {
     QString fullPath = QString(_serverConfigs["listPermissions"][_serverIndices.value("listPermissions")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}/permissions");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
@@ -727,6 +727,36 @@ void OAIDrivesPermissionsApi::listPermissions(const QString &drive_id, const QSt
                 }
             }
         }
+    }
+    if (count.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$count", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("$count")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(count.value())));
+    }
+    if (top.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$top", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("$top")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(top.value())));
     }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

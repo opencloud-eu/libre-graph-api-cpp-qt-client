@@ -38,6 +38,10 @@ class OAICollection_of_permissions_with_allowed_valuesPrivate {
      QList<OAIPermission> value;
      bool value_isSet;
      bool value_isValid;
+
+     qint32 odata_count;
+     bool odata_count_isSet;
+     bool odata_count_isValid;
 };
 
 OAICollection_of_permissions_with_allowed_values::OAICollection_of_permissions_with_allowed_values()
@@ -73,6 +77,9 @@ void OAICollection_of_permissions_with_allowed_values::initializeModel() {
 
         d->value_isSet = false;
         d->value_isValid = false;
+
+        d->odata_count_isSet = false;
+        d->odata_count_isValid = false;
     }
 }
 
@@ -96,6 +103,9 @@ void OAICollection_of_permissions_with_allowed_values::fromJsonObject(QJsonObjec
 
     d->value_isValid = ::OpenAPI::fromJsonValue(d->value, json[QString("value")]);
     d->value_isSet = !json[QString("value")].isNull() && d->value_isValid;
+
+    d->odata_count_isValid = ::OpenAPI::fromJsonValue(d->odata_count, json[QString("@odata.count")]);
+    d->odata_count_isSet = !json[QString("@odata.count")].isNull() && d->odata_count_isValid;
 }
 
 QString OAICollection_of_permissions_with_allowed_values::asJson() const {
@@ -119,6 +129,9 @@ QJsonObject OAICollection_of_permissions_with_allowed_values::asJsonObject() con
     }
     if (d->value.size() > 0) {
         obj.insert(QString("value"), ::OpenAPI::toJsonValue(d->value));
+    }
+    if (d->odata_count_isSet) {
+        obj.insert(QString("@odata.count"), ::OpenAPI::toJsonValue(d->odata_count));
     }
     return obj;
 }
@@ -219,6 +232,38 @@ bool OAICollection_of_permissions_with_allowed_values::is_value_Valid() const{
     return d->value_isValid;
 }
 
+qint32 OAICollection_of_permissions_with_allowed_values::getOdataCount() const {
+    Q_D(const OAICollection_of_permissions_with_allowed_values);
+    if(!d){
+        return {};
+    }
+    return d->odata_count;
+}
+void OAICollection_of_permissions_with_allowed_values::setOdataCount(const qint32 &odata_count) {
+    Q_D(OAICollection_of_permissions_with_allowed_values);
+    Q_ASSERT(d);
+
+    d->odata_count = odata_count;
+    d->odata_count_isSet = true;
+}
+
+bool OAICollection_of_permissions_with_allowed_values::is_odata_count_Set() const{
+    Q_D(const OAICollection_of_permissions_with_allowed_values);
+    if(!d){
+        return false;
+    }
+
+    return d->odata_count_isSet;
+}
+
+bool OAICollection_of_permissions_with_allowed_values::is_odata_count_Valid() const{
+    Q_D(const OAICollection_of_permissions_with_allowed_values);
+    if(!d){
+        return false;
+    }
+    return d->odata_count_isValid;
+}
+
 bool OAICollection_of_permissions_with_allowed_values::isSet() const {
     Q_D(const OAICollection_of_permissions_with_allowed_values);
     if(!d){
@@ -237,6 +282,11 @@ bool OAICollection_of_permissions_with_allowed_values::isSet() const {
         }
 
         if (d->value.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->odata_count_isSet) {
             isObjectUpdated = true;
             break;
         }

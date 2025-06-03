@@ -66,6 +66,11 @@ public:
     bool is_value_Set() const;
     bool is_value_Valid() const;
 
+    qint32 getOdataCount() const;
+    void setOdataCount(const qint32 &odata_count);
+    bool is_odata_count_Set() const;
+    bool is_odata_count_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 

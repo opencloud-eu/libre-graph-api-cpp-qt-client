@@ -107,8 +107,10 @@ public:
     * @param[in]  drive_id QString [required]
     * @param[in]  filter QString [optional]
     * @param[in]  select QSet<QString> [optional]
+    * @param[in]  count bool [optional]
+    * @param[in]  top qint32 [optional]
     */
-    void listPermissionsSpaceRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void listPermissionsSpaceRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<bool> &count = ::OpenAPI::OptionalParam<bool>(), const ::OpenAPI::OptionalParam<qint32> &top = ::OpenAPI::OptionalParam<qint32>());
 
     /**
     * @param[in]  drive_id QString [required]
