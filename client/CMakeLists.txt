@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]" APP_VERSION "v1.0.7")
+string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]" APP_VERSION "v1.0.8")
 string(REGEX REPLACE " " "" TARGET_NAME "Libre Graph API")
 
 project("Libre Graph API" VERSION ${APP_VERSION} LANGUAGES CXX)
