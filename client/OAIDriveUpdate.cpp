@@ -94,6 +94,10 @@ class OAIDriveUpdatePrivate {
      QList<OAIDriveItem> special;
      bool special_isSet;
      bool special_isValid;
+
+     bool libre_graph_has_trashed_items;
+     bool libre_graph_has_trashed_items_isSet;
+     bool libre_graph_has_trashed_items_isValid;
 };
 
 OAIDriveUpdate::OAIDriveUpdate()
@@ -171,6 +175,9 @@ void OAIDriveUpdate::initializeModel() {
 
         d->special_isSet = false;
         d->special_isValid = false;
+
+        d->libre_graph_has_trashed_items_isSet = false;
+        d->libre_graph_has_trashed_items_isValid = false;
     }
 }
 
@@ -236,6 +243,9 @@ void OAIDriveUpdate::fromJsonObject(QJsonObject json) {
 
     d->special_isValid = ::OpenAPI::fromJsonValue(d->special, json[QString("special")]);
     d->special_isSet = !json[QString("special")].isNull() && d->special_isValid;
+
+    d->libre_graph_has_trashed_items_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_has_trashed_items, json[QString("@libre.graph.hasTrashedItems")]);
+    d->libre_graph_has_trashed_items_isSet = !json[QString("@libre.graph.hasTrashedItems")].isNull() && d->libre_graph_has_trashed_items_isValid;
 }
 
 QString OAIDriveUpdate::asJson() const {
@@ -301,6 +311,9 @@ QJsonObject OAIDriveUpdate::asJsonObject() const {
     }
     if (d->special.size() > 0) {
         obj.insert(QString("special"), ::OpenAPI::toJsonValue(d->special));
+    }
+    if (d->libre_graph_has_trashed_items_isSet) {
+        obj.insert(QString("@libre.graph.hasTrashedItems"), ::OpenAPI::toJsonValue(d->libre_graph_has_trashed_items));
     }
     return obj;
 }
@@ -849,6 +862,38 @@ bool OAIDriveUpdate::is_special_Valid() const{
     return d->special_isValid;
 }
 
+bool OAIDriveUpdate::isLibreGraphHasTrashedItems() const {
+    Q_D(const OAIDriveUpdate);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_has_trashed_items;
+}
+void OAIDriveUpdate::setLibreGraphHasTrashedItems(const bool &libre_graph_has_trashed_items) {
+    Q_D(OAIDriveUpdate);
+    Q_ASSERT(d);
+
+    d->libre_graph_has_trashed_items = libre_graph_has_trashed_items;
+    d->libre_graph_has_trashed_items_isSet = true;
+}
+
+bool OAIDriveUpdate::is_libre_graph_has_trashed_items_Set() const{
+    Q_D(const OAIDriveUpdate);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_has_trashed_items_isSet;
+}
+
+bool OAIDriveUpdate::is_libre_graph_has_trashed_items_Valid() const{
+    Q_D(const OAIDriveUpdate);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_has_trashed_items_isValid;
+}
+
 bool OAIDriveUpdate::isSet() const {
     Q_D(const OAIDriveUpdate);
     if(!d){
@@ -937,6 +982,11 @@ bool OAIDriveUpdate::isSet() const {
         }
 
         if (d->special.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->libre_graph_has_trashed_items_isSet) {
             isObjectUpdated = true;
             break;
         }

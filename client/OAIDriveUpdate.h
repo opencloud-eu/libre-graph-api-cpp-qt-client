@@ -141,6 +141,11 @@ public:
     bool is_special_Set() const;
     bool is_special_Valid() const;
 
+    bool isLibreGraphHasTrashedItems() const;
+    void setLibreGraphHasTrashedItems(const bool &libre_graph_has_trashed_items);
+    bool is_libre_graph_has_trashed_items_Set() const;
+    bool is_libre_graph_has_trashed_items_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
