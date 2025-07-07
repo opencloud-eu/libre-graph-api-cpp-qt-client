@@ -23,6 +23,7 @@
 
 #include "OAICollection_of_drives_1.h"
 #include "OAIOdata_error.h"
+#include <QSet>
 #include <QString>
 
 #include <QObject>
@@ -71,8 +72,9 @@ public:
     * @param[in]  orderby QString [optional]
     * @param[in]  filter QString [optional]
     * @param[in]  expand QString [optional]
+    * @param[in]  select QSet<QString> [optional]
     */
-    void listAllDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &expand = ::OpenAPI::OptionalParam<QString>());
+    void listAllDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &expand = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
 
 
 private:

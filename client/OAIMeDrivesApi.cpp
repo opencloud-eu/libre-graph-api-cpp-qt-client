@@ -303,7 +303,7 @@ void OAIMeDrivesApi::listMyDrivesCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIMeDrivesApi::listMyDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<QString> &expand) {
+void OAIMeDrivesApi::listMyDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<QString> &expand, const ::OpenAPI::OptionalParam<QSet<QString>> &select) {
     QString fullPath = QString(_serverConfigs["listMyDrivesBeta"][_serverIndices.value("listMyDrivesBeta")].URL()+"/v1beta1/me/drives");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
@@ -356,6 +356,91 @@ void OAIMeDrivesApi::listMyDrivesBeta(const ::OpenAPI::OptionalParam<QString> &o
             fullPath.append("?");
 
         fullPath.append(QUrl::toPercentEncoding("$expand")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(expand.value())));
+    }
+    if (select.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$select", false);
+        if (select.value().size() > 0) {
+            if (QString("csv").indexOf("multi") == 0) {
+                foreach (QString t, select.value()) {
+                    if (fullPath.indexOf("?") > 0)
+                        fullPath.append(queryPrefix);
+                    else
+                        fullPath.append("?");
+                    fullPath.append("$select=").append(::OpenAPI::toStringValue(t));
+                }
+            } else if (QString("csv").indexOf("ssv") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append((false)? queryDelimiter : QUrl::toPercentEncoding(queryDelimiter));
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("tsv") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append("\t");
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("csv") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append(queryDelimiter);
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("pipes") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append(queryDelimiter);
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("deepObject") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append(queryDelimiter);
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            }
+        }
     }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

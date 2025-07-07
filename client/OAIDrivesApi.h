@@ -24,6 +24,7 @@
 #include "OAIDrive.h"
 #include "OAIDriveUpdate.h"
 #include "OAIOdata_error.h"
+#include <QSet>
 #include <QString>
 
 #include <QObject>
@@ -75,8 +76,9 @@ public:
 
     /**
     * @param[in]  drive_id QString [required]
+    * @param[in]  select QSet<QString> [optional]
     */
-    void getDrive(const QString &drive_id);
+    void getDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
     * @param[in]  drive_id QString [required]
