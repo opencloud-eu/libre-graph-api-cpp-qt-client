@@ -24,6 +24,7 @@
 #include "OAICollection_of_driveItems_1.h"
 #include "OAIDrive.h"
 #include "OAIOdata_error.h"
+#include <QSet>
 #include <QString>
 
 #include <QObject>
@@ -65,11 +66,15 @@ public:
 
     void getHome();
 
+    /**
+    * @param[in]  expand QSet<QString> [optional]
+    */
+    void listSharedByMe(const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
-    void listSharedByMe();
-
-
-    void listSharedWithMe();
+    /**
+    * @param[in]  expand QSet<QString> [optional]
+    */
+    void listSharedWithMe(const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
 
 private:
