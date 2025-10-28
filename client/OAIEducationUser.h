@@ -80,6 +80,11 @@ public:
     bool is_drive_Set() const;
     bool is_drive_Valid() const;
 
+    QString getExternalId() const;
+    void setExternalId(const QString &external_id);
+    bool is_external_id_Set() const;
+    bool is_external_id_Valid() const;
+
     QList<OAIObjectIdentity> getIdentities() const;
     void setIdentities(const QList<OAIObjectIdentity> &identities);
     bool is_identities_Set() const;

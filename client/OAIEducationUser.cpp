@@ -47,6 +47,10 @@ class OAIEducationUserPrivate {
      bool drive_isSet;
      bool drive_isValid;
 
+     QString external_id;
+     bool external_id_isSet;
+     bool external_id_isValid;
+
      QList<OAIObjectIdentity> identities;
      bool identities_isSet;
      bool identities_isValid;
@@ -124,6 +128,9 @@ void OAIEducationUser::initializeModel() {
         d->drive_isSet = false;
         d->drive_isValid = false;
 
+        d->external_id_isSet = false;
+        d->external_id_isValid = false;
+
         d->identities_isSet = false;
         d->identities_isValid = false;
 
@@ -180,6 +187,9 @@ void OAIEducationUser::fromJsonObject(QJsonObject json) {
     d->drive_isValid = ::OpenAPI::fromJsonValue(d->drive, json[QString("drive")]);
     d->drive_isSet = !json[QString("drive")].isNull() && d->drive_isValid;
 
+    d->external_id_isValid = ::OpenAPI::fromJsonValue(d->external_id, json[QString("externalId")]);
+    d->external_id_isSet = !json[QString("externalId")].isNull() && d->external_id_isValid;
+
     d->identities_isValid = ::OpenAPI::fromJsonValue(d->identities, json[QString("identities")]);
     d->identities_isSet = !json[QString("identities")].isNull() && d->identities_isValid;
 
@@ -235,6 +245,9 @@ QJsonObject OAIEducationUser::asJsonObject() const {
     }
     if (d->drive.isSet()) {
         obj.insert(QString("drive"), ::OpenAPI::toJsonValue(d->drive));
+    }
+    if (d->external_id_isSet) {
+        obj.insert(QString("externalId"), ::OpenAPI::toJsonValue(d->external_id));
     }
     if (d->identities.size() > 0) {
         obj.insert(QString("identities"), ::OpenAPI::toJsonValue(d->identities));
@@ -424,6 +437,38 @@ bool OAIEducationUser::is_drive_Valid() const{
         return false;
     }
     return d->drive_isValid;
+}
+
+QString OAIEducationUser::getExternalId() const {
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return {};
+    }
+    return d->external_id;
+}
+void OAIEducationUser::setExternalId(const QString &external_id) {
+    Q_D(OAIEducationUser);
+    Q_ASSERT(d);
+
+    d->external_id = external_id;
+    d->external_id_isSet = true;
+}
+
+bool OAIEducationUser::is_external_id_Set() const{
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return false;
+    }
+
+    return d->external_id_isSet;
+}
+
+bool OAIEducationUser::is_external_id_Valid() const{
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return false;
+    }
+    return d->external_id_isValid;
 }
 
 QList<OAIObjectIdentity> OAIEducationUser::getIdentities() const {
@@ -742,6 +787,11 @@ bool OAIEducationUser::isSet() const {
         }
 
         if (d->drive.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->external_id_isSet) {
             isObjectUpdated = true;
             break;
         }

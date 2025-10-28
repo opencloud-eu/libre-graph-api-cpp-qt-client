@@ -497,13 +497,28 @@ void OAIEducationUserApi::getEducationUserCallback(OAIHttpRequestWorker *worker)
     }
 }
 
-void OAIEducationUserApi::listEducationUsers(const ::OpenAPI::OptionalParam<QSet<QString>> &orderby, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
+void OAIEducationUserApi::listEducationUsers(const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<QSet<QString>> &orderby, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
     QString fullPath = QString(_serverConfigs["listEducationUsers"][_serverIndices.value("listEducationUsers")].URL()+"/v1.0/education/users");
     
     if (!_bearerToken.isEmpty())
         addHeaders("Authorization", "Bearer " + _bearerToken);
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    if (filter.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$filter", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("$filter")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(filter.value())));
+    }
     if (orderby.hasValue())
     {
         queryStyle = "form";

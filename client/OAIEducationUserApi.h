@@ -80,10 +80,11 @@ public:
     void getEducationUser(const QString &user_id, const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
+    * @param[in]  filter QString [optional]
     * @param[in]  orderby QSet<QString> [optional]
     * @param[in]  expand QSet<QString> [optional]
     */
-    void listEducationUsers(const ::OpenAPI::OptionalParam<QSet<QString>> &orderby = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void listEducationUsers(const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QSet<QString>> &orderby = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
     * @param[in]  user_id QString [required]
