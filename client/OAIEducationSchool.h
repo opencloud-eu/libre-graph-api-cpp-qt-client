@@ -62,6 +62,11 @@ public:
     bool is_school_number_Set() const;
     bool is_school_number_Valid() const;
 
+    QString getExternalId() const;
+    void setExternalId(const QString &external_id);
+    bool is_external_id_Set() const;
+    bool is_external_id_Valid() const;
+
     QDateTime getTerminationDate() const;
     void setTerminationDate(const QDateTime &termination_date);
     bool is_termination_date_Set() const;

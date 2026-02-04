@@ -39,6 +39,10 @@ class OAIEducationSchoolPrivate {
      bool school_number_isSet;
      bool school_number_isValid;
 
+     QString external_id;
+     bool external_id_isSet;
+     bool external_id_isValid;
+
      QDateTime termination_date;
      bool termination_date_isSet;
      bool termination_date_isValid;
@@ -78,6 +82,9 @@ void OAIEducationSchool::initializeModel() {
         d->school_number_isSet = false;
         d->school_number_isValid = false;
 
+        d->external_id_isSet = false;
+        d->external_id_isValid = false;
+
         d->termination_date_isSet = false;
         d->termination_date_isValid = false;
     }
@@ -104,6 +111,9 @@ void OAIEducationSchool::fromJsonObject(QJsonObject json) {
     d->school_number_isValid = ::OpenAPI::fromJsonValue(d->school_number, json[QString("schoolNumber")]);
     d->school_number_isSet = !json[QString("schoolNumber")].isNull() && d->school_number_isValid;
 
+    d->external_id_isValid = ::OpenAPI::fromJsonValue(d->external_id, json[QString("externalId")]);
+    d->external_id_isSet = !json[QString("externalId")].isNull() && d->external_id_isValid;
+
     d->termination_date_isValid = ::OpenAPI::fromJsonValue(d->termination_date, json[QString("terminationDate")]);
     d->termination_date_isSet = !json[QString("terminationDate")].isNull() && d->termination_date_isValid;
 }
@@ -129,6 +139,9 @@ QJsonObject OAIEducationSchool::asJsonObject() const {
     }
     if (d->school_number_isSet) {
         obj.insert(QString("schoolNumber"), ::OpenAPI::toJsonValue(d->school_number));
+    }
+    if (d->external_id_isSet) {
+        obj.insert(QString("externalId"), ::OpenAPI::toJsonValue(d->external_id));
     }
     if (d->termination_date_isSet) {
         obj.insert(QString("terminationDate"), ::OpenAPI::toJsonValue(d->termination_date));
@@ -232,6 +245,38 @@ bool OAIEducationSchool::is_school_number_Valid() const{
     return d->school_number_isValid;
 }
 
+QString OAIEducationSchool::getExternalId() const {
+    Q_D(const OAIEducationSchool);
+    if(!d){
+        return {};
+    }
+    return d->external_id;
+}
+void OAIEducationSchool::setExternalId(const QString &external_id) {
+    Q_D(OAIEducationSchool);
+    Q_ASSERT(d);
+
+    d->external_id = external_id;
+    d->external_id_isSet = true;
+}
+
+bool OAIEducationSchool::is_external_id_Set() const{
+    Q_D(const OAIEducationSchool);
+    if(!d){
+        return false;
+    }
+
+    return d->external_id_isSet;
+}
+
+bool OAIEducationSchool::is_external_id_Valid() const{
+    Q_D(const OAIEducationSchool);
+    if(!d){
+        return false;
+    }
+    return d->external_id_isValid;
+}
+
 QDateTime OAIEducationSchool::getTerminationDate() const {
     Q_D(const OAIEducationSchool);
     if(!d){
@@ -282,6 +327,11 @@ bool OAIEducationSchool::isSet() const {
         }
 
         if (d->school_number_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->external_id_isSet) {
             isObjectUpdated = true;
             break;
         }
