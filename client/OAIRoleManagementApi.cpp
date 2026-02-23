@@ -328,7 +328,16 @@ void OAIRoleManagementApi::listPermissionRoleDefinitionsCallback(OAIHttpRequestW
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAIUnifiedRoleDefinition output(QString(worker->response));
+    QList<OAIUnifiedRoleDefinition> output;
+    QString json(worker->response);
+    QByteArray array();
+    QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8());
+    QJsonArray jsonArray = doc.array();
+    foreach (QJsonValue obj, jsonArray) {
+        OAIUnifiedRoleDefinition val;
+        ::OpenAPI::fromJsonValue(val, obj);
+        output.append(val);
+    }
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {

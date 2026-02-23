@@ -98,13 +98,13 @@ private:
 signals:
 
     void getPermissionRoleDefinitionSignal(OAIUnifiedRoleDefinition summary);
-    void listPermissionRoleDefinitionsSignal(OAIUnifiedRoleDefinition summary);
+    void listPermissionRoleDefinitionsSignal(QList<OAIUnifiedRoleDefinition> summary);
 
     void getPermissionRoleDefinitionSignalFull(OAIHttpRequestWorker *worker, OAIUnifiedRoleDefinition summary);
-    void listPermissionRoleDefinitionsSignalFull(OAIHttpRequestWorker *worker, OAIUnifiedRoleDefinition summary);
+    void listPermissionRoleDefinitionsSignalFull(OAIHttpRequestWorker *worker, QList<OAIUnifiedRoleDefinition> summary);
 
     void getPermissionRoleDefinitionSignalE(OAIUnifiedRoleDefinition summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void listPermissionRoleDefinitionsSignalE(OAIUnifiedRoleDefinition summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listPermissionRoleDefinitionsSignalE(QList<OAIUnifiedRoleDefinition> summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void getPermissionRoleDefinitionSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listPermissionRoleDefinitionsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
