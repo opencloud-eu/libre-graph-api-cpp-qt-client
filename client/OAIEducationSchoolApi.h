@@ -115,8 +115,10 @@ public:
     */
     void listSchoolUsers(const QString &school_id);
 
-
-    void listSchools();
+    /**
+    * @param[in]  filter QString [optional]
+    */
+    void listSchools(const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  school_id QString [required]

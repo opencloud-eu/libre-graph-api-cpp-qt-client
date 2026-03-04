@@ -851,12 +851,28 @@ void OAIEducationSchoolApi::listSchoolUsersCallback(OAIHttpRequestWorker *worker
     }
 }
 
-void OAIEducationSchoolApi::listSchools() {
+void OAIEducationSchoolApi::listSchools(const ::OpenAPI::OptionalParam<QString> &filter) {
     QString fullPath = QString(_serverConfigs["listSchools"][_serverIndices.value("listSchools")].URL()+"/v1.0/education/schools");
     
     if (!_bearerToken.isEmpty())
         addHeaders("Authorization", "Bearer " + _bearerToken);
     
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    if (filter.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$filter", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("$filter")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(filter.value())));
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
