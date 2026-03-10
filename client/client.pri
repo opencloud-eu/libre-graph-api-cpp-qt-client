@@ -23,6 +23,7 @@ HEADERS += \
     $${PWD}/OAICollection_of_educationClass.h \
     $${PWD}/OAICollection_of_educationUser.h \
     $${PWD}/OAICollection_of_group.h \
+    $${PWD}/OAICollection_of_invitations.h \
     $${PWD}/OAICollection_of_permissions.h \
     $${PWD}/OAICollection_of_permissions_with_allowed_values.h \
     $${PWD}/OAICollection_of_schools.h \
@@ -40,6 +41,7 @@ HEADERS += \
     $${PWD}/OAIEducationSchool.h \
     $${PWD}/OAIEducationUser.h \
     $${PWD}/OAIEducationUser_Reference.h \
+    $${PWD}/OAIEmailAddress.h \
     $${PWD}/OAIExportPersonalData_request.h \
     $${PWD}/OAIFileSystemInfo.h \
     $${PWD}/OAIFolder.h \
@@ -50,6 +52,8 @@ HEADERS += \
     $${PWD}/OAIIdentity.h \
     $${PWD}/OAIIdentitySet.h \
     $${PWD}/OAIImage.h \
+    $${PWD}/OAIInvitation.h \
+    $${PWD}/OAIInvitedUserMessageInfo.h \
     $${PWD}/OAIItemReference.h \
     $${PWD}/OAIMember_Reference.h \
     $${PWD}/OAIObjectIdentity.h \
@@ -62,6 +66,7 @@ HEADERS += \
     $${PWD}/OAIPermission.h \
     $${PWD}/OAIPhoto.h \
     $${PWD}/OAIQuota.h \
+    $${PWD}/OAIRecipient.h \
     $${PWD}/OAIRemoteItem.h \
     $${PWD}/OAISharePointIdentitySet.h \
     $${PWD}/OAISharingInvitation.h \
@@ -94,6 +99,7 @@ HEADERS += \
     $${PWD}/OAIEducationUserApi.h \
     $${PWD}/OAIGroupApi.h \
     $${PWD}/OAIGroupsApi.h \
+    $${PWD}/OAIInvitationsApi.h \
     $${PWD}/OAIMeChangepasswordApi.h \
     $${PWD}/OAIMeDriveApi.h \
     $${PWD}/OAIMeDriveRootApi.h \
@@ -140,6 +146,7 @@ SOURCES += \
     $${PWD}/OAICollection_of_educationClass.cpp \
     $${PWD}/OAICollection_of_educationUser.cpp \
     $${PWD}/OAICollection_of_group.cpp \
+    $${PWD}/OAICollection_of_invitations.cpp \
     $${PWD}/OAICollection_of_permissions.cpp \
     $${PWD}/OAICollection_of_permissions_with_allowed_values.cpp \
     $${PWD}/OAICollection_of_schools.cpp \
@@ -157,6 +164,7 @@ SOURCES += \
     $${PWD}/OAIEducationSchool.cpp \
     $${PWD}/OAIEducationUser.cpp \
     $${PWD}/OAIEducationUser_Reference.cpp \
+    $${PWD}/OAIEmailAddress.cpp \
     $${PWD}/OAIExportPersonalData_request.cpp \
     $${PWD}/OAIFileSystemInfo.cpp \
     $${PWD}/OAIFolder.cpp \
@@ -167,6 +175,8 @@ SOURCES += \
     $${PWD}/OAIIdentity.cpp \
     $${PWD}/OAIIdentitySet.cpp \
     $${PWD}/OAIImage.cpp \
+    $${PWD}/OAIInvitation.cpp \
+    $${PWD}/OAIInvitedUserMessageInfo.cpp \
     $${PWD}/OAIItemReference.cpp \
     $${PWD}/OAIMember_Reference.cpp \
     $${PWD}/OAIObjectIdentity.cpp \
@@ -179,6 +189,7 @@ SOURCES += \
     $${PWD}/OAIPermission.cpp \
     $${PWD}/OAIPhoto.cpp \
     $${PWD}/OAIQuota.cpp \
+    $${PWD}/OAIRecipient.cpp \
     $${PWD}/OAIRemoteItem.cpp \
     $${PWD}/OAISharePointIdentitySet.cpp \
     $${PWD}/OAISharingInvitation.cpp \
@@ -211,6 +222,7 @@ SOURCES += \
     $${PWD}/OAIEducationUserApi.cpp \
     $${PWD}/OAIGroupApi.cpp \
     $${PWD}/OAIGroupsApi.cpp \
+    $${PWD}/OAIInvitationsApi.cpp \
     $${PWD}/OAIMeChangepasswordApi.cpp \
     $${PWD}/OAIMeDriveApi.cpp \
     $${PWD}/OAIMeDriveRootApi.cpp \

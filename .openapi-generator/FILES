@@ -47,6 +47,8 @@ client/OAICollection_of_educationUser.cpp
 client/OAICollection_of_educationUser.h
 client/OAICollection_of_group.cpp
 client/OAICollection_of_group.h
+client/OAICollection_of_invitations.cpp
+client/OAICollection_of_invitations.h
 client/OAICollection_of_permissions.cpp
 client/OAICollection_of_permissions.h
 client/OAICollection_of_permissions_with_allowed_values.cpp
@@ -99,6 +101,8 @@ client/OAIEducationUserApi.cpp
 client/OAIEducationUserApi.h
 client/OAIEducationUser_Reference.cpp
 client/OAIEducationUser_Reference.h
+client/OAIEmailAddress.cpp
+client/OAIEmailAddress.h
 client/OAIEnum.h
 client/OAIExportPersonalData_request.cpp
 client/OAIExportPersonalData_request.h
@@ -130,6 +134,12 @@ client/OAIIdentitySet.cpp
 client/OAIIdentitySet.h
 client/OAIImage.cpp
 client/OAIImage.h
+client/OAIInvitation.cpp
+client/OAIInvitation.h
+client/OAIInvitationsApi.cpp
+client/OAIInvitationsApi.h
+client/OAIInvitedUserMessageInfo.cpp
+client/OAIInvitedUserMessageInfo.h
 client/OAIItemReference.cpp
 client/OAIItemReference.h
 client/OAIMeChangepasswordApi.cpp
@@ -171,6 +181,8 @@ client/OAIPhoto.cpp
 client/OAIPhoto.h
 client/OAIQuota.cpp
 client/OAIQuota.h
+client/OAIRecipient.cpp
+client/OAIRecipient.h
 client/OAIRemoteItem.cpp
 client/OAIRemoteItem.h
 client/OAIRoleManagementApi.cpp

@@ -47,6 +47,7 @@ add_library(client
     OAICollection_of_educationClass.cpp
     OAICollection_of_educationUser.cpp
     OAICollection_of_group.cpp
+    OAICollection_of_invitations.cpp
     OAICollection_of_permissions.cpp
     OAICollection_of_permissions_with_allowed_values.cpp
     OAICollection_of_schools.cpp
@@ -64,6 +65,7 @@ add_library(client
     OAIEducationSchool.cpp
     OAIEducationUser.cpp
     OAIEducationUser_Reference.cpp
+    OAIEmailAddress.cpp
     OAIExportPersonalData_request.cpp
     OAIFileSystemInfo.cpp
     OAIFolder.cpp
@@ -74,6 +76,8 @@ add_library(client
     OAIIdentity.cpp
     OAIIdentitySet.cpp
     OAIImage.cpp
+    OAIInvitation.cpp
+    OAIInvitedUserMessageInfo.cpp
     OAIItemReference.cpp
     OAIMember_Reference.cpp
     OAIObjectIdentity.cpp
@@ -86,6 +90,7 @@ add_library(client
     OAIPermission.cpp
     OAIPhoto.cpp
     OAIQuota.cpp
+    OAIRecipient.cpp
     OAIRemoteItem.cpp
     OAISharePointIdentitySet.cpp
     OAISharingInvitation.cpp
@@ -117,6 +122,7 @@ add_library(client
     OAIEducationUserApi.cpp
     OAIGroupApi.cpp
     OAIGroupsApi.cpp
+    OAIInvitationsApi.cpp
     OAIMeChangepasswordApi.cpp
     OAIMeDriveApi.cpp
     OAIMeDriveRootApi.cpp
@@ -175,6 +181,7 @@ set(HEADER
     OAICollection_of_educationClass.h
     OAICollection_of_educationUser.h
     OAICollection_of_group.h
+    OAICollection_of_invitations.h
     OAICollection_of_permissions.h
     OAICollection_of_permissions_with_allowed_values.h
     OAICollection_of_schools.h
@@ -192,6 +199,7 @@ set(HEADER
     OAIEducationSchool.h
     OAIEducationUser.h
     OAIEducationUser_Reference.h
+    OAIEmailAddress.h
     OAIExportPersonalData_request.h
     OAIFileSystemInfo.h
     OAIFolder.h
@@ -202,6 +210,8 @@ set(HEADER
     OAIIdentity.h
     OAIIdentitySet.h
     OAIImage.h
+    OAIInvitation.h
+    OAIInvitedUserMessageInfo.h
     OAIItemReference.h
     OAIMember_Reference.h
     OAIObjectIdentity.h
@@ -214,6 +224,7 @@ set(HEADER
     OAIPermission.h
     OAIPhoto.h
     OAIQuota.h
+    OAIRecipient.h
     OAIRemoteItem.h
     OAISharePointIdentitySet.h
     OAISharingInvitation.h
@@ -245,6 +256,7 @@ set(HEADER
     OAIEducationUserApi.h
     OAIGroupApi.h
     OAIGroupsApi.h
+    OAIInvitationsApi.h
     OAIMeChangepasswordApi.h
     OAIMeDriveApi.h
     OAIMeDriveRootApi.h
