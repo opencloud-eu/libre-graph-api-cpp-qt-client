@@ -23,6 +23,7 @@
 
 #include "OAICollection_of_driveItems_1.h"
 #include "OAIDrive.h"
+#include "OAIDriveItem.h"
 #include "OAIOdata_error.h"
 #include <QSet>
 #include <QString>
@@ -63,6 +64,11 @@ public:
     QString getParamStyleSuffix(const QString &style);
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
+    /**
+    * @param[in]  item_id QString [required]
+    */
+    void followDriveItem(const QString &item_id);
+
 
     void getHome();
 
@@ -75,6 +81,11 @@ public:
     * @param[in]  expand QSet<QString> [optional]
     */
     void listSharedWithMe(const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
+
+    /**
+    * @param[in]  item_id QString [required]
+    */
+    void unfollowDriveItem(const QString &item_id);
 
 
 private:
@@ -99,27 +110,37 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
+    void followDriveItemCallback(OAIHttpRequestWorker *worker);
     void getHomeCallback(OAIHttpRequestWorker *worker);
     void listSharedByMeCallback(OAIHttpRequestWorker *worker);
     void listSharedWithMeCallback(OAIHttpRequestWorker *worker);
+    void unfollowDriveItemCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
+    void followDriveItemSignal(OAIDriveItem summary);
     void getHomeSignal(OAIDrive summary);
     void listSharedByMeSignal(OAICollection_of_driveItems_1 summary);
     void listSharedWithMeSignal(OAICollection_of_driveItems_1 summary);
+    void unfollowDriveItemSignal();
 
+    void followDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
     void getHomeSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
     void listSharedByMeSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_driveItems_1 summary);
     void listSharedWithMeSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_driveItems_1 summary);
+    void unfollowDriveItemSignalFull(OAIHttpRequestWorker *worker);
 
+    void followDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getHomeSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listSharedByMeSignalE(OAICollection_of_driveItems_1 summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listSharedWithMeSignalE(OAICollection_of_driveItems_1 summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void unfollowDriveItemSignalE(QNetworkReply::NetworkError error_type, QString error_str);
 
+    void followDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getHomeSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listSharedByMeSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listSharedWithMeSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void unfollowDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

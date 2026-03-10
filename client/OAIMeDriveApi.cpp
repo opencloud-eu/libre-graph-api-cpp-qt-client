@@ -39,12 +39,16 @@ void OAIMeDriveApi::initializeServerConfigs() {
     QUrl("https://localhost:9200/graph"),
     "OpenCloud Development Setup",
     QMap<QString, OAIServerVariable>()));
+    _serverConfigs.insert("followDriveItem", defaultConf);
+    _serverIndices.insert("followDriveItem", 0);
     _serverConfigs.insert("getHome", defaultConf);
     _serverIndices.insert("getHome", 0);
     _serverConfigs.insert("listSharedByMe", defaultConf);
     _serverIndices.insert("listSharedByMe", 0);
     _serverConfigs.insert("listSharedWithMe", defaultConf);
     _serverIndices.insert("listSharedWithMe", 0);
+    _serverConfigs.insert("unfollowDriveItem", defaultConf);
+    _serverIndices.insert("unfollowDriveItem", 0);
 }
 
 /**
@@ -217,6 +221,74 @@ QString OAIMeDriveApi::getParamStyleDelimiter(const QString &style, const QStrin
 
     } else {
         return "none";
+    }
+}
+
+void OAIMeDriveApi::followDriveItem(const QString &item_id) {
+    QString fullPath = QString(_serverConfigs["followDriveItem"][_serverIndices.value("followDriveItem")].URL()+"/v1.0/me/drive/items/{item-id}/follow");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    
+    {
+        QString item_idPathParam("{");
+        item_idPathParam.append("item-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "item-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"item-id"+pathSuffix : pathPrefix;
+        fullPath.replace(item_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(item_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveApi::followDriveItemCallback);
+    connect(this, &OAIMeDriveApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIMeDriveApi::followDriveItemCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIDriveItem output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit followDriveItemSignal(output);
+        emit followDriveItemSignalFull(worker, output);
+    } else {
+        emit followDriveItemSignalE(output, error_type, error_str);
+        emit followDriveItemSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -551,6 +623,73 @@ void OAIMeDriveApi::listSharedWithMeCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit listSharedWithMeSignalE(output, error_type, error_str);
         emit listSharedWithMeSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIMeDriveApi::unfollowDriveItem(const QString &item_id) {
+    QString fullPath = QString(_serverConfigs["unfollowDriveItem"][_serverIndices.value("unfollowDriveItem")].URL()+"/v1.0/me/drive/following/{item-id}");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    
+    {
+        QString item_idPathParam("{");
+        item_idPathParam.append("item-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "item-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"item-id"+pathSuffix : pathPrefix;
+        fullPath.replace(item_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(item_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "DELETE");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveApi::unfollowDriveItemCallback);
+    connect(this, &OAIMeDriveApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIMeDriveApi::unfollowDriveItemCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit unfollowDriveItemSignal();
+        emit unfollowDriveItemSignalFull(worker);
+    } else {
+        emit unfollowDriveItemSignalE(error_type, error_str);
+        emit unfollowDriveItemSignalEFull(worker, error_type, error_str);
     }
 }
 
