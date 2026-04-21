@@ -236,6 +236,11 @@ public:
     bool is_client_synchronize_Set() const;
     bool is_client_synchronize_Valid() const;
 
+    QString getMicrosoftGraphDownloadUrl() const;
+    void setMicrosoftGraphDownloadUrl(const QString &microsoft_graph_download_url);
+    bool is_microsoft_graph_download_url_Set() const;
+    bool is_microsoft_graph_download_url_Valid() const;
+
     bool isUiHidden() const;
     void setUiHidden(const bool &ui_hidden);
     bool is_ui_hidden_Set() const;

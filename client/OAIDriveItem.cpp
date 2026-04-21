@@ -151,6 +151,10 @@ class OAIDriveItemPrivate {
      bool client_synchronize_isSet;
      bool client_synchronize_isValid;
 
+     QString microsoft_graph_download_url;
+     bool microsoft_graph_download_url_isSet;
+     bool microsoft_graph_download_url_isValid;
+
      bool ui_hidden;
      bool ui_hidden_isSet;
      bool ui_hidden_isValid;
@@ -274,6 +278,9 @@ void OAIDriveItem::initializeModel() {
         d->client_synchronize_isSet = false;
         d->client_synchronize_isValid = false;
 
+        d->microsoft_graph_download_url_isSet = false;
+        d->microsoft_graph_download_url_isValid = false;
+
         d->ui_hidden_isSet = false;
         d->ui_hidden_isValid = false;
     }
@@ -384,6 +391,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->client_synchronize_isValid = ::OpenAPI::fromJsonValue(d->client_synchronize, json[QString("@client.synchronize")]);
     d->client_synchronize_isSet = !json[QString("@client.synchronize")].isNull() && d->client_synchronize_isValid;
 
+    d->microsoft_graph_download_url_isValid = ::OpenAPI::fromJsonValue(d->microsoft_graph_download_url, json[QString("@microsoft.graph.downloadUrl")]);
+    d->microsoft_graph_download_url_isSet = !json[QString("@microsoft.graph.downloadUrl")].isNull() && d->microsoft_graph_download_url_isValid;
+
     d->ui_hidden_isValid = ::OpenAPI::fromJsonValue(d->ui_hidden, json[QString("@UI.Hidden")]);
     d->ui_hidden_isSet = !json[QString("@UI.Hidden")].isNull() && d->ui_hidden_isValid;
 }
@@ -493,6 +503,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->client_synchronize_isSet) {
         obj.insert(QString("@client.synchronize"), ::OpenAPI::toJsonValue(d->client_synchronize));
+    }
+    if (d->microsoft_graph_download_url_isSet) {
+        obj.insert(QString("@microsoft.graph.downloadUrl"), ::OpenAPI::toJsonValue(d->microsoft_graph_download_url));
     }
     if (d->ui_hidden_isSet) {
         obj.insert(QString("@UI.Hidden"), ::OpenAPI::toJsonValue(d->ui_hidden));
@@ -1492,6 +1505,38 @@ bool OAIDriveItem::is_client_synchronize_Valid() const{
     return d->client_synchronize_isValid;
 }
 
+QString OAIDriveItem::getMicrosoftGraphDownloadUrl() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->microsoft_graph_download_url;
+}
+void OAIDriveItem::setMicrosoftGraphDownloadUrl(const QString &microsoft_graph_download_url) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->microsoft_graph_download_url = microsoft_graph_download_url;
+    d->microsoft_graph_download_url_isSet = true;
+}
+
+bool OAIDriveItem::is_microsoft_graph_download_url_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->microsoft_graph_download_url_isSet;
+}
+
+bool OAIDriveItem::is_microsoft_graph_download_url_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->microsoft_graph_download_url_isValid;
+}
+
 bool OAIDriveItem::isUiHidden() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1682,6 +1727,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->client_synchronize_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->microsoft_graph_download_url_isSet) {
             isObjectUpdated = true;
             break;
         }

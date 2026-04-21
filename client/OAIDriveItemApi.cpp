@@ -43,6 +43,8 @@ void OAIDriveItemApi::initializeServerConfigs() {
     _serverIndices.insert("deleteDriveItem", 0);
     _serverConfigs.insert("getDriveItem", defaultConf);
     _serverIndices.insert("getDriveItem", 0);
+    _serverConfigs.insert("getDriveItemContent", defaultConf);
+    _serverIndices.insert("getDriveItemContent", 0);
     _serverConfigs.insert("updateDriveItem", defaultConf);
     _serverIndices.insert("updateDriveItem", 0);
 }
@@ -301,8 +303,176 @@ void OAIDriveItemApi::deleteDriveItemCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDriveItemApi::getDriveItem(const QString &drive_id, const QString &item_id) {
+void OAIDriveItemApi::getDriveItem(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select) {
     QString fullPath = QString(_serverConfigs["getDriveItem"][_serverIndices.value("getDriveItem")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    
+    {
+        QString item_idPathParam("{");
+        item_idPathParam.append("item-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "item-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"item-id"+pathSuffix : pathPrefix;
+        fullPath.replace(item_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(item_id)));
+    }
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    if (select.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$select", false);
+        if (select.value().size() > 0) {
+            if (QString("csv").indexOf("multi") == 0) {
+                foreach (QString t, select.value()) {
+                    if (fullPath.indexOf("?") > 0)
+                        fullPath.append(queryPrefix);
+                    else
+                        fullPath.append("?");
+                    fullPath.append("$select=").append(::OpenAPI::toStringValue(t));
+                }
+            } else if (QString("csv").indexOf("ssv") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append((false)? queryDelimiter : QUrl::toPercentEncoding(queryDelimiter));
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("tsv") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append("\t");
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("csv") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append(queryDelimiter);
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("pipes") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append(queryDelimiter);
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("deepObject") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$select").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, select.value()) {
+                    if (count > 0) {
+                        fullPath.append(queryDelimiter);
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            }
+        }
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDriveItemApi::getDriveItemCallback);
+    connect(this, &OAIDriveItemApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDriveItemApi::getDriveItemCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIDriveItem output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getDriveItemSignal(output);
+        emit getDriveItemSignalFull(worker, output);
+    } else {
+        emit getDriveItemSignalE(output, error_type, error_str);
+        emit getDriveItemSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDriveItemApi::getDriveItemContent(const QString &drive_id, const QString &item_id) {
+    QString fullPath = QString(_serverConfigs["getDriveItemContent"][_serverIndices.value("getDriveItemContent")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}/content");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
         QByteArray b64;
@@ -353,7 +523,7 @@ void OAIDriveItemApi::getDriveItem(const QString &drive_id, const QString &item_
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDriveItemApi::getDriveItemCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDriveItemApi::getDriveItemContentCallback);
     connect(this, &OAIDriveItemApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -364,22 +534,22 @@ void OAIDriveItemApi::getDriveItem(const QString &drive_id, const QString &item_
     worker->execute(&input);
 }
 
-void OAIDriveItemApi::getDriveItemCallback(OAIHttpRequestWorker *worker) {
+void OAIDriveItemApi::getDriveItemContentCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAIDriveItem output(QString(worker->response));
+    OAIOdata_error output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit getDriveItemSignal(output);
-        emit getDriveItemSignalFull(worker, output);
+        emit getDriveItemContentSignal(output);
+        emit getDriveItemContentSignalFull(worker, output);
     } else {
-        emit getDriveItemSignalE(output, error_type, error_str);
-        emit getDriveItemSignalEFull(worker, error_type, error_str);
+        emit getDriveItemContentSignalE(output, error_type, error_str);
+        emit getDriveItemContentSignalEFull(worker, error_type, error_str);
     }
 }
 
