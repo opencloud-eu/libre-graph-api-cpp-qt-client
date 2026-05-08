@@ -32,6 +32,7 @@
 #include "OAIIdentitySet.h"
 #include "OAIImage.h"
 #include "OAIItemReference.h"
+#include "OAIMotionPhoto.h"
 #include "OAIObject.h"
 #include "OAIOpenGraphFile.h"
 #include "OAIPermission.h"
@@ -65,6 +66,7 @@ class OAIRemoteItem;
 class OAIPermission;
 class OAIAudio;
 class OAIVideo;
+class OAIMotionPhoto;
 
 
 class OAIDriveItemPrivate;
@@ -230,6 +232,11 @@ public:
     void setVideo(const OAIVideo &video);
     bool is_video_Set() const;
     bool is_video_Valid() const;
+
+    OAIMotionPhoto getLibreGraphMotionPhoto() const;
+    void setLibreGraphMotionPhoto(const OAIMotionPhoto &libre_graph_motion_photo);
+    bool is_libre_graph_motion_photo_Set() const;
+    bool is_libre_graph_motion_photo_Valid() const;
 
     bool isClientSynchronize() const;
     void setClientSynchronize(const bool &client_synchronize);

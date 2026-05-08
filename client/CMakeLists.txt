@@ -80,6 +80,7 @@ add_library(client
     OAIInvitedUserMessageInfo.cpp
     OAIItemReference.cpp
     OAIMember_Reference.cpp
+    OAIMotionPhoto.cpp
     OAIObjectIdentity.cpp
     OAIOdata_error.cpp
     OAIOdata_error_detail.cpp
@@ -214,6 +215,7 @@ set(HEADER
     OAIInvitedUserMessageInfo.h
     OAIItemReference.h
     OAIMember_Reference.h
+    OAIMotionPhoto.h
     OAIObjectIdentity.h
     OAIOdata_error.h
     OAIOdata_error_detail.h

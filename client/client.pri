@@ -56,6 +56,7 @@ HEADERS += \
     $${PWD}/OAIInvitedUserMessageInfo.h \
     $${PWD}/OAIItemReference.h \
     $${PWD}/OAIMember_Reference.h \
+    $${PWD}/OAIMotionPhoto.h \
     $${PWD}/OAIObjectIdentity.h \
     $${PWD}/OAIOdata_error.h \
     $${PWD}/OAIOdata_error_detail.h \
@@ -179,6 +180,7 @@ SOURCES += \
     $${PWD}/OAIInvitedUserMessageInfo.cpp \
     $${PWD}/OAIItemReference.cpp \
     $${PWD}/OAIMember_Reference.cpp \
+    $${PWD}/OAIMotionPhoto.cpp \
     $${PWD}/OAIObjectIdentity.cpp \
     $${PWD}/OAIOdata_error.cpp \
     $${PWD}/OAIOdata_error_detail.cpp \

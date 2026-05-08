@@ -147,6 +147,10 @@ class OAIDriveItemPrivate {
      bool video_isSet;
      bool video_isValid;
 
+     OAIMotionPhoto libre_graph_motion_photo;
+     bool libre_graph_motion_photo_isSet;
+     bool libre_graph_motion_photo_isValid;
+
      bool client_synchronize;
      bool client_synchronize_isSet;
      bool client_synchronize_isValid;
@@ -275,6 +279,9 @@ void OAIDriveItem::initializeModel() {
         d->video_isSet = false;
         d->video_isValid = false;
 
+        d->libre_graph_motion_photo_isSet = false;
+        d->libre_graph_motion_photo_isValid = false;
+
         d->client_synchronize_isSet = false;
         d->client_synchronize_isValid = false;
 
@@ -388,6 +395,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->video_isValid = ::OpenAPI::fromJsonValue(d->video, json[QString("video")]);
     d->video_isSet = !json[QString("video")].isNull() && d->video_isValid;
 
+    d->libre_graph_motion_photo_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_motion_photo, json[QString("@libre.graph.motionPhoto")]);
+    d->libre_graph_motion_photo_isSet = !json[QString("@libre.graph.motionPhoto")].isNull() && d->libre_graph_motion_photo_isValid;
+
     d->client_synchronize_isValid = ::OpenAPI::fromJsonValue(d->client_synchronize, json[QString("@client.synchronize")]);
     d->client_synchronize_isSet = !json[QString("@client.synchronize")].isNull() && d->client_synchronize_isValid;
 
@@ -500,6 +510,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->video.isSet()) {
         obj.insert(QString("video"), ::OpenAPI::toJsonValue(d->video));
+    }
+    if (d->libre_graph_motion_photo.isSet()) {
+        obj.insert(QString("@libre.graph.motionPhoto"), ::OpenAPI::toJsonValue(d->libre_graph_motion_photo));
     }
     if (d->client_synchronize_isSet) {
         obj.insert(QString("@client.synchronize"), ::OpenAPI::toJsonValue(d->client_synchronize));
@@ -1473,6 +1486,38 @@ bool OAIDriveItem::is_video_Valid() const{
     return d->video_isValid;
 }
 
+OAIMotionPhoto OAIDriveItem::getLibreGraphMotionPhoto() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_motion_photo;
+}
+void OAIDriveItem::setLibreGraphMotionPhoto(const OAIMotionPhoto &libre_graph_motion_photo) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->libre_graph_motion_photo = libre_graph_motion_photo;
+    d->libre_graph_motion_photo_isSet = true;
+}
+
+bool OAIDriveItem::is_libre_graph_motion_photo_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_motion_photo_isSet;
+}
+
+bool OAIDriveItem::is_libre_graph_motion_photo_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_motion_photo_isValid;
+}
+
 bool OAIDriveItem::isClientSynchronize() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1722,6 +1767,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->video.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->libre_graph_motion_photo.isSet()) {
             isObjectUpdated = true;
             break;
         }

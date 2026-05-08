@@ -158,6 +158,8 @@ client/OAIMeUserApi.cpp
 client/OAIMeUserApi.h
 client/OAIMember_Reference.cpp
 client/OAIMember_Reference.h
+client/OAIMotionPhoto.cpp
+client/OAIMotionPhoto.h
 client/OAIOauth.cpp
 client/OAIOauth.h
 client/OAIObject.h
