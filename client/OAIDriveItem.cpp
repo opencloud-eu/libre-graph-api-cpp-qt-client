@@ -174,6 +174,10 @@ class OAIDriveItemPrivate {
      QList<QString> libre_graph_tags;
      bool libre_graph_tags_isSet;
      bool libre_graph_tags_isValid;
+
+     QList<QString> libre_graph_permissions_actions_allowed_values;
+     bool libre_graph_permissions_actions_allowed_values_isSet;
+     bool libre_graph_permissions_actions_allowed_values_isValid;
 };
 
 OAIDriveItem::OAIDriveItem()
@@ -311,6 +315,9 @@ void OAIDriveItem::initializeModel() {
 
         d->libre_graph_tags_isSet = false;
         d->libre_graph_tags_isValid = false;
+
+        d->libre_graph_permissions_actions_allowed_values_isSet = false;
+        d->libre_graph_permissions_actions_allowed_values_isValid = false;
     }
 }
 
@@ -436,6 +443,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
 
     d->libre_graph_tags_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_tags, json[QString("@libre.graph.tags")]);
     d->libre_graph_tags_isSet = !json[QString("@libre.graph.tags")].isNull() && d->libre_graph_tags_isValid;
+
+    d->libre_graph_permissions_actions_allowed_values_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_permissions_actions_allowed_values, json[QString("@libre.graph.permissions.actions.allowedValues")]);
+    d->libre_graph_permissions_actions_allowed_values_isSet = !json[QString("@libre.graph.permissions.actions.allowedValues")].isNull() && d->libre_graph_permissions_actions_allowed_values_isValid;
 }
 
 QString OAIDriveItem::asJson() const {
@@ -561,6 +571,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->libre_graph_tags.size() > 0) {
         obj.insert(QString("@libre.graph.tags"), ::OpenAPI::toJsonValue(d->libre_graph_tags));
+    }
+    if (d->libre_graph_permissions_actions_allowed_values.size() > 0) {
+        obj.insert(QString("@libre.graph.permissions.actions.allowedValues"), ::OpenAPI::toJsonValue(d->libre_graph_permissions_actions_allowed_values));
     }
     return obj;
 }
@@ -1749,6 +1762,38 @@ bool OAIDriveItem::is_libre_graph_tags_Valid() const{
     return d->libre_graph_tags_isValid;
 }
 
+QList<QString> OAIDriveItem::getLibreGraphPermissionsActionsAllowedValues() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_permissions_actions_allowed_values;
+}
+void OAIDriveItem::setLibreGraphPermissionsActionsAllowedValues(const QList<QString> &libre_graph_permissions_actions_allowed_values) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->libre_graph_permissions_actions_allowed_values = libre_graph_permissions_actions_allowed_values;
+    d->libre_graph_permissions_actions_allowed_values_isSet = true;
+}
+
+bool OAIDriveItem::is_libre_graph_permissions_actions_allowed_values_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_permissions_actions_allowed_values_isSet;
+}
+
+bool OAIDriveItem::is_libre_graph_permissions_actions_allowed_values_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_permissions_actions_allowed_values_isValid;
+}
+
 bool OAIDriveItem::isSet() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1937,6 +1982,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->libre_graph_tags.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->libre_graph_permissions_actions_allowed_values.size() > 0) {
             isObjectUpdated = true;
             break;
         }

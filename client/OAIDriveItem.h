@@ -270,6 +270,11 @@ public:
     bool is_libre_graph_tags_Set() const;
     bool is_libre_graph_tags_Valid() const;
 
+    QList<QString> getLibreGraphPermissionsActionsAllowedValues() const;
+    void setLibreGraphPermissionsActionsAllowedValues(const QList<QString> &libre_graph_permissions_actions_allowed_values);
+    bool is_libre_graph_permissions_actions_allowed_values_Set() const;
+    bool is_libre_graph_permissions_actions_allowed_values_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 

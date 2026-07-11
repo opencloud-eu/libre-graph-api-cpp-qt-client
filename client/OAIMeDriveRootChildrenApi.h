@@ -23,6 +23,7 @@
 
 #include "OAICollection_of_driveItems.h"
 #include "OAIOdata_error.h"
+#include <QSet>
 #include <QString>
 
 #include <QObject>
@@ -61,8 +62,10 @@ public:
     QString getParamStyleSuffix(const QString &style);
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
-
-    void homeGetChildren();
+    /**
+    * @param[in]  select QSet<QString> [optional]
+    */
+    void homeGetChildren(const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
 
 
 private:
