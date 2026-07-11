@@ -21,6 +21,7 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
+#include "OAICollection_of_driveItems.h"
 #include "OAIDriveItem.h"
 #include "OAIOdata_error.h"
 #include <QSet>
@@ -65,6 +66,15 @@ public:
     /**
     * @param[in]  drive_id QString [required]
     * @param[in]  item_id QString [required]
+    * @param[in]  oai_drive_item OAIDriveItem [required]
+    * @param[in]  libre_graph_conflict_behavior QString [optional]
+    * @param[in]  libre_graph_missing_parents_behavior QString [optional]
+    */
+    void createChildDriveItem(const QString &drive_id, const QString &item_id, const OAIDriveItem &oai_drive_item, const ::OpenAPI::OptionalParam<QString> &libre_graph_conflict_behavior = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &libre_graph_missing_parents_behavior = ::OpenAPI::OptionalParam<QString>());
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  item_id QString [required]
     */
     void deleteDriveItem(const QString &drive_id, const QString &item_id);
 
@@ -74,6 +84,12 @@ public:
     * @param[in]  select QSet<QString> [optional]
     */
     void getDriveItem(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  item_id QString [required]
+    */
+    void getDriveItemChildren(const QString &drive_id, const QString &item_id);
 
     /**
     * @param[in]  drive_id QString [required]
@@ -111,30 +127,40 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
+    void createChildDriveItemCallback(OAIHttpRequestWorker *worker);
     void deleteDriveItemCallback(OAIHttpRequestWorker *worker);
     void getDriveItemCallback(OAIHttpRequestWorker *worker);
+    void getDriveItemChildrenCallback(OAIHttpRequestWorker *worker);
     void getDriveItemContentCallback(OAIHttpRequestWorker *worker);
     void updateDriveItemCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
+    void createChildDriveItemSignal(OAIDriveItem summary);
     void deleteDriveItemSignal();
     void getDriveItemSignal(OAIDriveItem summary);
+    void getDriveItemChildrenSignal(OAICollection_of_driveItems summary);
     void getDriveItemContentSignal(OAIOdata_error summary);
     void updateDriveItemSignal(OAIDriveItem summary);
 
+    void createChildDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
     void deleteDriveItemSignalFull(OAIHttpRequestWorker *worker);
     void getDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
+    void getDriveItemChildrenSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_driveItems summary);
     void getDriveItemContentSignalFull(OAIHttpRequestWorker *worker, OAIOdata_error summary);
     void updateDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
 
+    void createChildDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteDriveItemSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveItemChildrenSignalE(OAICollection_of_driveItems summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveItemContentSignalE(OAIOdata_error summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
 
+    void createChildDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveItemChildrenSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveItemContentSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 

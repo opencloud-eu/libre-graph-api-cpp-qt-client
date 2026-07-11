@@ -70,9 +70,11 @@ public:
 
     /**
     * @param[in]  drive_id QString [required]
+    * @param[in]  libre_graph_conflict_behavior QString [optional]
+    * @param[in]  libre_graph_missing_parents_behavior QString [optional]
     * @param[in]  oai_drive_item OAIDriveItem [optional]
     */
-    void createDriveItem(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItem> &oai_drive_item = ::OpenAPI::OptionalParam<OAIDriveItem>());
+    void createDriveItem(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &libre_graph_conflict_behavior = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &libre_graph_missing_parents_behavior = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<OAIDriveItem> &oai_drive_item = ::OpenAPI::OptionalParam<OAIDriveItem>());
 
     /**
     * @param[in]  drive_id QString [required]

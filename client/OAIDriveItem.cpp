@@ -151,6 +151,10 @@ class OAIDriveItemPrivate {
      bool libre_graph_motion_photo_isSet;
      bool libre_graph_motion_photo_isValid;
 
+     OAILivePhoto libre_graph_live_photo;
+     bool libre_graph_live_photo_isSet;
+     bool libre_graph_live_photo_isValid;
+
      bool client_synchronize;
      bool client_synchronize_isSet;
      bool client_synchronize_isValid;
@@ -162,6 +166,14 @@ class OAIDriveItemPrivate {
      bool ui_hidden;
      bool ui_hidden_isSet;
      bool ui_hidden_isValid;
+
+     bool libre_graph_me_following;
+     bool libre_graph_me_following_isSet;
+     bool libre_graph_me_following_isValid;
+
+     QList<QString> libre_graph_tags;
+     bool libre_graph_tags_isSet;
+     bool libre_graph_tags_isValid;
 };
 
 OAIDriveItem::OAIDriveItem()
@@ -282,6 +294,9 @@ void OAIDriveItem::initializeModel() {
         d->libre_graph_motion_photo_isSet = false;
         d->libre_graph_motion_photo_isValid = false;
 
+        d->libre_graph_live_photo_isSet = false;
+        d->libre_graph_live_photo_isValid = false;
+
         d->client_synchronize_isSet = false;
         d->client_synchronize_isValid = false;
 
@@ -290,6 +305,12 @@ void OAIDriveItem::initializeModel() {
 
         d->ui_hidden_isSet = false;
         d->ui_hidden_isValid = false;
+
+        d->libre_graph_me_following_isSet = false;
+        d->libre_graph_me_following_isValid = false;
+
+        d->libre_graph_tags_isSet = false;
+        d->libre_graph_tags_isValid = false;
     }
 }
 
@@ -398,6 +419,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->libre_graph_motion_photo_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_motion_photo, json[QString("@libre.graph.motionPhoto")]);
     d->libre_graph_motion_photo_isSet = !json[QString("@libre.graph.motionPhoto")].isNull() && d->libre_graph_motion_photo_isValid;
 
+    d->libre_graph_live_photo_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_live_photo, json[QString("@libre.graph.livePhoto")]);
+    d->libre_graph_live_photo_isSet = !json[QString("@libre.graph.livePhoto")].isNull() && d->libre_graph_live_photo_isValid;
+
     d->client_synchronize_isValid = ::OpenAPI::fromJsonValue(d->client_synchronize, json[QString("@client.synchronize")]);
     d->client_synchronize_isSet = !json[QString("@client.synchronize")].isNull() && d->client_synchronize_isValid;
 
@@ -406,6 +430,12 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
 
     d->ui_hidden_isValid = ::OpenAPI::fromJsonValue(d->ui_hidden, json[QString("@UI.Hidden")]);
     d->ui_hidden_isSet = !json[QString("@UI.Hidden")].isNull() && d->ui_hidden_isValid;
+
+    d->libre_graph_me_following_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_me_following, json[QString("@libre.graph.me.following")]);
+    d->libre_graph_me_following_isSet = !json[QString("@libre.graph.me.following")].isNull() && d->libre_graph_me_following_isValid;
+
+    d->libre_graph_tags_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_tags, json[QString("@libre.graph.tags")]);
+    d->libre_graph_tags_isSet = !json[QString("@libre.graph.tags")].isNull() && d->libre_graph_tags_isValid;
 }
 
 QString OAIDriveItem::asJson() const {
@@ -514,6 +544,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     if (d->libre_graph_motion_photo.isSet()) {
         obj.insert(QString("@libre.graph.motionPhoto"), ::OpenAPI::toJsonValue(d->libre_graph_motion_photo));
     }
+    if (d->libre_graph_live_photo.isSet()) {
+        obj.insert(QString("@libre.graph.livePhoto"), ::OpenAPI::toJsonValue(d->libre_graph_live_photo));
+    }
     if (d->client_synchronize_isSet) {
         obj.insert(QString("@client.synchronize"), ::OpenAPI::toJsonValue(d->client_synchronize));
     }
@@ -522,6 +555,12 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->ui_hidden_isSet) {
         obj.insert(QString("@UI.Hidden"), ::OpenAPI::toJsonValue(d->ui_hidden));
+    }
+    if (d->libre_graph_me_following_isSet) {
+        obj.insert(QString("@libre.graph.me.following"), ::OpenAPI::toJsonValue(d->libre_graph_me_following));
+    }
+    if (d->libre_graph_tags.size() > 0) {
+        obj.insert(QString("@libre.graph.tags"), ::OpenAPI::toJsonValue(d->libre_graph_tags));
     }
     return obj;
 }
@@ -1518,6 +1557,38 @@ bool OAIDriveItem::is_libre_graph_motion_photo_Valid() const{
     return d->libre_graph_motion_photo_isValid;
 }
 
+OAILivePhoto OAIDriveItem::getLibreGraphLivePhoto() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_live_photo;
+}
+void OAIDriveItem::setLibreGraphLivePhoto(const OAILivePhoto &libre_graph_live_photo) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->libre_graph_live_photo = libre_graph_live_photo;
+    d->libre_graph_live_photo_isSet = true;
+}
+
+bool OAIDriveItem::is_libre_graph_live_photo_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_live_photo_isSet;
+}
+
+bool OAIDriveItem::is_libre_graph_live_photo_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_live_photo_isValid;
+}
+
 bool OAIDriveItem::isClientSynchronize() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1612,6 +1683,70 @@ bool OAIDriveItem::is_ui_hidden_Valid() const{
         return false;
     }
     return d->ui_hidden_isValid;
+}
+
+bool OAIDriveItem::isLibreGraphMeFollowing() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_me_following;
+}
+void OAIDriveItem::setLibreGraphMeFollowing(const bool &libre_graph_me_following) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->libre_graph_me_following = libre_graph_me_following;
+    d->libre_graph_me_following_isSet = true;
+}
+
+bool OAIDriveItem::is_libre_graph_me_following_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_me_following_isSet;
+}
+
+bool OAIDriveItem::is_libre_graph_me_following_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_me_following_isValid;
+}
+
+QList<QString> OAIDriveItem::getLibreGraphTags() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_tags;
+}
+void OAIDriveItem::setLibreGraphTags(const QList<QString> &libre_graph_tags) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->libre_graph_tags = libre_graph_tags;
+    d->libre_graph_tags_isSet = true;
+}
+
+bool OAIDriveItem::is_libre_graph_tags_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_tags_isSet;
+}
+
+bool OAIDriveItem::is_libre_graph_tags_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_tags_isValid;
 }
 
 bool OAIDriveItem::isSet() const {
@@ -1776,6 +1911,11 @@ bool OAIDriveItem::isSet() const {
             break;
         }
 
+        if (d->libre_graph_live_photo.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (d->client_synchronize_isSet) {
             isObjectUpdated = true;
             break;
@@ -1787,6 +1927,16 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->ui_hidden_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->libre_graph_me_following_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->libre_graph_tags.size() > 0) {
             isObjectUpdated = true;
             break;
         }

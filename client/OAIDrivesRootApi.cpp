@@ -232,7 +232,7 @@ QString OAIDrivesRootApi::getParamStyleDelimiter(const QString &style, const QSt
     }
 }
 
-void OAIDrivesRootApi::createDriveItem(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItem> &oai_drive_item) {
+void OAIDrivesRootApi::createDriveItem(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &libre_graph_conflict_behavior, const ::OpenAPI::OptionalParam<QString> &libre_graph_missing_parents_behavior, const ::OpenAPI::OptionalParam<OAIDriveItem> &oai_drive_item) {
     QString fullPath = QString(_serverConfigs["createDriveItem"][_serverIndices.value("createDriveItem")].URL()+"/v1beta1/drives/{drive-id}/root/children");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
@@ -253,6 +253,37 @@ void OAIDrivesRootApi::createDriveItem(const QString &drive_id, const ::OpenAPI:
         pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
         QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
         fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    if (libre_graph_conflict_behavior.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "@libre.graph.conflictBehavior", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("@libre.graph.conflictBehavior")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(libre_graph_conflict_behavior.value())));
+    }
+    if (libre_graph_missing_parents_behavior.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "@libre.graph.missingParentsBehavior", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("@libre.graph.missingParentsBehavior")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(libre_graph_missing_parents_behavior.value())));
     }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

@@ -32,6 +32,7 @@
 #include "OAIIdentitySet.h"
 #include "OAIImage.h"
 #include "OAIItemReference.h"
+#include "OAILivePhoto.h"
 #include "OAIMotionPhoto.h"
 #include "OAIObject.h"
 #include "OAIOpenGraphFile.h"
@@ -67,6 +68,7 @@ class OAIPermission;
 class OAIAudio;
 class OAIVideo;
 class OAIMotionPhoto;
+class OAILivePhoto;
 
 
 class OAIDriveItemPrivate;
@@ -238,6 +240,11 @@ public:
     bool is_libre_graph_motion_photo_Set() const;
     bool is_libre_graph_motion_photo_Valid() const;
 
+    OAILivePhoto getLibreGraphLivePhoto() const;
+    void setLibreGraphLivePhoto(const OAILivePhoto &libre_graph_live_photo);
+    bool is_libre_graph_live_photo_Set() const;
+    bool is_libre_graph_live_photo_Valid() const;
+
     bool isClientSynchronize() const;
     void setClientSynchronize(const bool &client_synchronize);
     bool is_client_synchronize_Set() const;
@@ -252,6 +259,16 @@ public:
     void setUiHidden(const bool &ui_hidden);
     bool is_ui_hidden_Set() const;
     bool is_ui_hidden_Valid() const;
+
+    bool isLibreGraphMeFollowing() const;
+    void setLibreGraphMeFollowing(const bool &libre_graph_me_following);
+    bool is_libre_graph_me_following_Set() const;
+    bool is_libre_graph_me_following_Valid() const;
+
+    QList<QString> getLibreGraphTags() const;
+    void setLibreGraphTags(const QList<QString> &libre_graph_tags);
+    bool is_libre_graph_tags_Set() const;
+    bool is_libre_graph_tags_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

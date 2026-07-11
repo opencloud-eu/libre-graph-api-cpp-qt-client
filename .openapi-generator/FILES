@@ -142,6 +142,8 @@ client/OAIInvitedUserMessageInfo.cpp
 client/OAIInvitedUserMessageInfo.h
 client/OAIItemReference.cpp
 client/OAIItemReference.h
+client/OAILivePhoto.cpp
+client/OAILivePhoto.h
 client/OAIMeChangepasswordApi.cpp
 client/OAIMeChangepasswordApi.h
 client/OAIMeDriveApi.cpp

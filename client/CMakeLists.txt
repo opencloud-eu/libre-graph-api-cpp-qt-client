@@ -79,6 +79,7 @@ add_library(client
     OAIInvitation.cpp
     OAIInvitedUserMessageInfo.cpp
     OAIItemReference.cpp
+    OAILivePhoto.cpp
     OAIMember_Reference.cpp
     OAIMotionPhoto.cpp
     OAIObjectIdentity.cpp
@@ -214,6 +215,7 @@ set(HEADER
     OAIInvitation.h
     OAIInvitedUserMessageInfo.h
     OAIItemReference.h
+    OAILivePhoto.h
     OAIMember_Reference.h
     OAIMotionPhoto.h
     OAIObjectIdentity.h
