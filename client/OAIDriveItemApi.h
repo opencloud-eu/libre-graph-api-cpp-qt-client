@@ -100,6 +100,13 @@ public:
     /**
     * @param[in]  drive_id QString [required]
     * @param[in]  item_id QString [required]
+    * @param[in]  select QSet<QString> [optional]
+    */
+    void getDriveItemV1(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  item_id QString [required]
     * @param[in]  oai_drive_item OAIDriveItem [required]
     */
     void updateDriveItem(const QString &drive_id, const QString &item_id, const OAIDriveItem &oai_drive_item);
@@ -132,6 +139,7 @@ private:
     void getDriveItemCallback(OAIHttpRequestWorker *worker);
     void getDriveItemChildrenCallback(OAIHttpRequestWorker *worker);
     void getDriveItemContentCallback(OAIHttpRequestWorker *worker);
+    void getDriveItemV1Callback(OAIHttpRequestWorker *worker);
     void updateDriveItemCallback(OAIHttpRequestWorker *worker);
 
 signals:
@@ -141,6 +149,7 @@ signals:
     void getDriveItemSignal(OAIDriveItem summary);
     void getDriveItemChildrenSignal(OAICollection_of_driveItems summary);
     void getDriveItemContentSignal(OAIOdata_error summary);
+    void getDriveItemV1Signal(OAIDriveItem summary);
     void updateDriveItemSignal(OAIDriveItem summary);
 
     void createChildDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
@@ -148,6 +157,7 @@ signals:
     void getDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
     void getDriveItemChildrenSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_driveItems summary);
     void getDriveItemContentSignalFull(OAIHttpRequestWorker *worker, OAIOdata_error summary);
+    void getDriveItemV1SignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
     void updateDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
 
     void createChildDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -155,6 +165,7 @@ signals:
     void getDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveItemChildrenSignalE(OAICollection_of_driveItems summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveItemContentSignalE(OAIOdata_error summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveItemV1SignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void createChildDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
@@ -162,6 +173,7 @@ signals:
     void getDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveItemChildrenSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveItemContentSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveItemV1SignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
