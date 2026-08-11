@@ -88,8 +88,9 @@ public:
     /**
     * @param[in]  drive_id QString [required]
     * @param[in]  item_id QString [required]
+    * @param[in]  select QSet<QString> [optional]
     */
-    void getDriveItemChildren(const QString &drive_id, const QString &item_id);
+    void getDriveItemChildren(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
     * @param[in]  drive_id QString [required]
