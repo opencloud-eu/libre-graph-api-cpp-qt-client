@@ -98,6 +98,10 @@ class OAIDriveUpdatePrivate {
      bool libre_graph_has_trashed_items;
      bool libre_graph_has_trashed_items_isSet;
      bool libre_graph_has_trashed_items_isValid;
+
+     QString ui_extension;
+     bool ui_extension_isSet;
+     bool ui_extension_isValid;
 };
 
 OAIDriveUpdate::OAIDriveUpdate()
@@ -178,6 +182,9 @@ void OAIDriveUpdate::initializeModel() {
 
         d->libre_graph_has_trashed_items_isSet = false;
         d->libre_graph_has_trashed_items_isValid = false;
+
+        d->ui_extension_isSet = false;
+        d->ui_extension_isValid = false;
     }
 }
 
@@ -246,6 +253,9 @@ void OAIDriveUpdate::fromJsonObject(QJsonObject json) {
 
     d->libre_graph_has_trashed_items_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_has_trashed_items, json[QString("@libre.graph.hasTrashedItems")]);
     d->libre_graph_has_trashed_items_isSet = !json[QString("@libre.graph.hasTrashedItems")].isNull() && d->libre_graph_has_trashed_items_isValid;
+
+    d->ui_extension_isValid = ::OpenAPI::fromJsonValue(d->ui_extension, json[QString("@UI.extension")]);
+    d->ui_extension_isSet = !json[QString("@UI.extension")].isNull() && d->ui_extension_isValid;
 }
 
 QString OAIDriveUpdate::asJson() const {
@@ -314,6 +324,9 @@ QJsonObject OAIDriveUpdate::asJsonObject() const {
     }
     if (d->libre_graph_has_trashed_items_isSet) {
         obj.insert(QString("@libre.graph.hasTrashedItems"), ::OpenAPI::toJsonValue(d->libre_graph_has_trashed_items));
+    }
+    if (d->ui_extension_isSet) {
+        obj.insert(QString("@UI.extension"), ::OpenAPI::toJsonValue(d->ui_extension));
     }
     return obj;
 }
@@ -894,6 +907,38 @@ bool OAIDriveUpdate::is_libre_graph_has_trashed_items_Valid() const{
     return d->libre_graph_has_trashed_items_isValid;
 }
 
+QString OAIDriveUpdate::getUiExtension() const {
+    Q_D(const OAIDriveUpdate);
+    if(!d){
+        return {};
+    }
+    return d->ui_extension;
+}
+void OAIDriveUpdate::setUiExtension(const QString &ui_extension) {
+    Q_D(OAIDriveUpdate);
+    Q_ASSERT(d);
+
+    d->ui_extension = ui_extension;
+    d->ui_extension_isSet = true;
+}
+
+bool OAIDriveUpdate::is_ui_extension_Set() const{
+    Q_D(const OAIDriveUpdate);
+    if(!d){
+        return false;
+    }
+
+    return d->ui_extension_isSet;
+}
+
+bool OAIDriveUpdate::is_ui_extension_Valid() const{
+    Q_D(const OAIDriveUpdate);
+    if(!d){
+        return false;
+    }
+    return d->ui_extension_isValid;
+}
+
 bool OAIDriveUpdate::isSet() const {
     Q_D(const OAIDriveUpdate);
     if(!d){
@@ -987,6 +1032,11 @@ bool OAIDriveUpdate::isSet() const {
         }
 
         if (d->libre_graph_has_trashed_items_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->ui_extension_isSet) {
             isObjectUpdated = true;
             break;
         }
