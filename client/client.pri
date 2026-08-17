@@ -3,6 +3,8 @@ QT += network
 HEADERS += \
 # Models
     $${PWD}/OAIActivity.h \
+    $${PWD}/OAIActivityNotification.h \
+    $${PWD}/OAIActivityTopic.h \
     $${PWD}/OAIActivity_template.h \
     $${PWD}/OAIActivity_times.h \
     $${PWD}/OAIAppRole.h \
@@ -114,6 +116,7 @@ HEADERS += \
     $${PWD}/OAIUserApi.h \
     $${PWD}/OAIUserAppRoleAssignmentApi.h \
     $${PWD}/OAIUserPhotoApi.h \
+    $${PWD}/OAIUserTeamworkApi.h \
     $${PWD}/OAIUsersApi.h \
 # Others
     $${PWD}/OAIHelpers.h \
@@ -128,6 +131,8 @@ HEADERS += \
 SOURCES += \
 # Models
     $${PWD}/OAIActivity.cpp \
+    $${PWD}/OAIActivityNotification.cpp \
+    $${PWD}/OAIActivityTopic.cpp \
     $${PWD}/OAIActivity_template.cpp \
     $${PWD}/OAIActivity_times.cpp \
     $${PWD}/OAIAppRole.cpp \
@@ -239,6 +244,7 @@ SOURCES += \
     $${PWD}/OAIUserApi.cpp \
     $${PWD}/OAIUserAppRoleAssignmentApi.cpp \
     $${PWD}/OAIUserPhotoApi.cpp \
+    $${PWD}/OAIUserTeamworkApi.cpp \
     $${PWD}/OAIUsersApi.cpp \
 # Others
     $${PWD}/OAIHelpers.cpp \

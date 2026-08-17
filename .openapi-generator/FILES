@@ -5,6 +5,10 @@ client/OAIActivitiesApi.cpp
 client/OAIActivitiesApi.h
 client/OAIActivity.cpp
 client/OAIActivity.h
+client/OAIActivityNotification.cpp
+client/OAIActivityNotification.h
+client/OAIActivityTopic.cpp
+client/OAIActivityTopic.h
 client/OAIActivity_template.cpp
 client/OAIActivity_template.h
 client/OAIActivity_times.cpp
@@ -231,6 +235,8 @@ client/OAIUserAppRoleAssignmentApi.cpp
 client/OAIUserAppRoleAssignmentApi.h
 client/OAIUserPhotoApi.cpp
 client/OAIUserPhotoApi.h
+client/OAIUserTeamworkApi.cpp
+client/OAIUserTeamworkApi.h
 client/OAIUserUpdate.cpp
 client/OAIUserUpdate.h
 client/OAIUsersApi.cpp

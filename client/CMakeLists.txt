@@ -27,6 +27,8 @@ find_package(ZLIB REQUIRED)
 
 add_library(client
     OAIActivity.cpp
+    OAIActivityNotification.cpp
+    OAIActivityTopic.cpp
     OAIActivity_template.cpp
     OAIActivity_times.cpp
     OAIAppRole.cpp
@@ -137,6 +139,7 @@ add_library(client
     OAIUserApi.cpp
     OAIUserAppRoleAssignmentApi.cpp
     OAIUserPhotoApi.cpp
+    OAIUserTeamworkApi.cpp
     OAIUsersApi.cpp
     OAIHelpers.cpp
     OAIHttpRequest.cpp
@@ -163,6 +166,8 @@ set_target_properties(client PROPERTIES
 
 set(HEADER
     OAIActivity.h
+    OAIActivityNotification.h
+    OAIActivityTopic.h
     OAIActivity_template.h
     OAIActivity_times.h
     OAIAppRole.h
@@ -273,6 +278,7 @@ set(HEADER
     OAIUserApi.h
     OAIUserAppRoleAssignmentApi.h
     OAIUserPhotoApi.h
+    OAIUserTeamworkApi.h
     OAIUsersApi.h
     OAIEnum.h
     OAIHelpers.h
