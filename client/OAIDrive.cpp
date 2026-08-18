@@ -99,9 +99,9 @@ class OAIDrivePrivate {
      bool libre_graph_has_trashed_items_isSet;
      bool libre_graph_has_trashed_items_isValid;
 
-     QString ui_extension;
-     bool ui_extension_isSet;
-     bool ui_extension_isValid;
+     QString libre_graph_content_type;
+     bool libre_graph_content_type_isSet;
+     bool libre_graph_content_type_isValid;
 };
 
 OAIDrive::OAIDrive()
@@ -183,8 +183,8 @@ void OAIDrive::initializeModel() {
         d->libre_graph_has_trashed_items_isSet = false;
         d->libre_graph_has_trashed_items_isValid = false;
 
-        d->ui_extension_isSet = false;
-        d->ui_extension_isValid = false;
+        d->libre_graph_content_type_isSet = false;
+        d->libre_graph_content_type_isValid = false;
     }
 }
 
@@ -254,8 +254,8 @@ void OAIDrive::fromJsonObject(QJsonObject json) {
     d->libre_graph_has_trashed_items_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_has_trashed_items, json[QString("@libre.graph.hasTrashedItems")]);
     d->libre_graph_has_trashed_items_isSet = !json[QString("@libre.graph.hasTrashedItems")].isNull() && d->libre_graph_has_trashed_items_isValid;
 
-    d->ui_extension_isValid = ::OpenAPI::fromJsonValue(d->ui_extension, json[QString("@UI.extension")]);
-    d->ui_extension_isSet = !json[QString("@UI.extension")].isNull() && d->ui_extension_isValid;
+    d->libre_graph_content_type_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_content_type, json[QString("@libre.graph.contentType")]);
+    d->libre_graph_content_type_isSet = !json[QString("@libre.graph.contentType")].isNull() && d->libre_graph_content_type_isValid;
 }
 
 QString OAIDrive::asJson() const {
@@ -325,8 +325,8 @@ QJsonObject OAIDrive::asJsonObject() const {
     if (d->libre_graph_has_trashed_items_isSet) {
         obj.insert(QString("@libre.graph.hasTrashedItems"), ::OpenAPI::toJsonValue(d->libre_graph_has_trashed_items));
     }
-    if (d->ui_extension_isSet) {
-        obj.insert(QString("@UI.extension"), ::OpenAPI::toJsonValue(d->ui_extension));
+    if (d->libre_graph_content_type_isSet) {
+        obj.insert(QString("@libre.graph.contentType"), ::OpenAPI::toJsonValue(d->libre_graph_content_type));
     }
     return obj;
 }
@@ -907,36 +907,36 @@ bool OAIDrive::is_libre_graph_has_trashed_items_Valid() const{
     return d->libre_graph_has_trashed_items_isValid;
 }
 
-QString OAIDrive::getUiExtension() const {
+QString OAIDrive::getLibreGraphContentType() const {
     Q_D(const OAIDrive);
     if(!d){
         return {};
     }
-    return d->ui_extension;
+    return d->libre_graph_content_type;
 }
-void OAIDrive::setUiExtension(const QString &ui_extension) {
+void OAIDrive::setLibreGraphContentType(const QString &libre_graph_content_type) {
     Q_D(OAIDrive);
     Q_ASSERT(d);
 
-    d->ui_extension = ui_extension;
-    d->ui_extension_isSet = true;
+    d->libre_graph_content_type = libre_graph_content_type;
+    d->libre_graph_content_type_isSet = true;
 }
 
-bool OAIDrive::is_ui_extension_Set() const{
+bool OAIDrive::is_libre_graph_content_type_Set() const{
     Q_D(const OAIDrive);
     if(!d){
         return false;
     }
 
-    return d->ui_extension_isSet;
+    return d->libre_graph_content_type_isSet;
 }
 
-bool OAIDrive::is_ui_extension_Valid() const{
+bool OAIDrive::is_libre_graph_content_type_Valid() const{
     Q_D(const OAIDrive);
     if(!d){
         return false;
     }
-    return d->ui_extension_isValid;
+    return d->libre_graph_content_type_isValid;
 }
 
 bool OAIDrive::isSet() const {
@@ -1036,7 +1036,7 @@ bool OAIDrive::isSet() const {
             break;
         }
 
-        if (d->ui_extension_isSet) {
+        if (d->libre_graph_content_type_isSet) {
             isObjectUpdated = true;
             break;
         }

@@ -146,10 +146,10 @@ public:
     bool is_libre_graph_has_trashed_items_Set() const;
     bool is_libre_graph_has_trashed_items_Valid() const;
 
-    QString getUiExtension() const;
-    void setUiExtension(const QString &ui_extension);
-    bool is_ui_extension_Set() const;
-    bool is_ui_extension_Valid() const;
+    QString getLibreGraphContentType() const;
+    void setLibreGraphContentType(const QString &libre_graph_content_type);
+    bool is_libre_graph_content_type_Set() const;
+    bool is_libre_graph_content_type_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
