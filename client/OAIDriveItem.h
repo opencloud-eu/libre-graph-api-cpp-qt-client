@@ -282,6 +282,11 @@ public:
     bool is_libre_graph_permissions_actions_allowed_values_Set() const;
     bool is_libre_graph_permissions_actions_allowed_values_Valid() const;
 
+    QList<QString> getLibreGraphShareTypes() const;
+    void setLibreGraphShareTypes(const QList<QString> &libre_graph_share_types);
+    bool is_libre_graph_share_types_Set() const;
+    bool is_libre_graph_share_types_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
