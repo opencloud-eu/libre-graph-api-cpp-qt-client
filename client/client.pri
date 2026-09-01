@@ -67,6 +67,8 @@ HEADERS += \
     $${PWD}/OAIOpenGraphFile.h \
     $${PWD}/OAIPasswordProfile.h \
     $${PWD}/OAIPassword_change.h \
+    $${PWD}/OAIPendingOperations.h \
+    $${PWD}/OAIPendingOperations_pendingContentUpdate.h \
     $${PWD}/OAIPermission.h \
     $${PWD}/OAIPhoto.h \
     $${PWD}/OAIQuota.h \
@@ -195,6 +197,8 @@ SOURCES += \
     $${PWD}/OAIOpenGraphFile.cpp \
     $${PWD}/OAIPasswordProfile.cpp \
     $${PWD}/OAIPassword_change.cpp \
+    $${PWD}/OAIPendingOperations.cpp \
+    $${PWD}/OAIPendingOperations_pendingContentUpdate.cpp \
     $${PWD}/OAIPermission.cpp \
     $${PWD}/OAIPhoto.cpp \
     $${PWD}/OAIQuota.cpp \

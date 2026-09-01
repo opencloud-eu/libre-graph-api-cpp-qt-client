@@ -91,6 +91,8 @@ add_library(client
     OAIOpenGraphFile.cpp
     OAIPasswordProfile.cpp
     OAIPassword_change.cpp
+    OAIPendingOperations.cpp
+    OAIPendingOperations_pendingContentUpdate.cpp
     OAIPermission.cpp
     OAIPhoto.cpp
     OAIQuota.cpp
@@ -230,6 +232,8 @@ set(HEADER
     OAIOpenGraphFile.h
     OAIPasswordProfile.h
     OAIPassword_change.h
+    OAIPendingOperations.h
+    OAIPendingOperations_pendingContentUpdate.h
     OAIPermission.h
     OAIPhoto.h
     OAIQuota.h

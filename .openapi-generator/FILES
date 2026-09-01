@@ -183,6 +183,10 @@ client/OAIPasswordProfile.cpp
 client/OAIPasswordProfile.h
 client/OAIPassword_change.cpp
 client/OAIPassword_change.h
+client/OAIPendingOperations.cpp
+client/OAIPendingOperations.h
+client/OAIPendingOperations_pendingContentUpdate.cpp
+client/OAIPendingOperations_pendingContentUpdate.h
 client/OAIPermission.cpp
 client/OAIPermission.h
 client/OAIPhoto.cpp

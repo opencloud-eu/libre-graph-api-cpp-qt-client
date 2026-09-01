@@ -79,6 +79,10 @@ class OAIDriveItemPrivate {
      bool deleted_isSet;
      bool deleted_isValid;
 
+     OAIPendingOperations pending_operations;
+     bool pending_operations_isSet;
+     bool pending_operations_isValid;
+
      OAIOpenGraphFile file;
      bool file_isSet;
      bool file_isValid;
@@ -244,6 +248,9 @@ void OAIDriveItem::initializeModel() {
         d->deleted_isSet = false;
         d->deleted_isValid = false;
 
+        d->pending_operations_isSet = false;
+        d->pending_operations_isValid = false;
+
         d->file_isSet = false;
         d->file_isValid = false;
 
@@ -372,6 +379,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->deleted_isValid = ::OpenAPI::fromJsonValue(d->deleted, json[QString("deleted")]);
     d->deleted_isSet = !json[QString("deleted")].isNull() && d->deleted_isValid;
 
+    d->pending_operations_isValid = ::OpenAPI::fromJsonValue(d->pending_operations, json[QString("pendingOperations")]);
+    d->pending_operations_isSet = !json[QString("pendingOperations")].isNull() && d->pending_operations_isValid;
+
     d->file_isValid = ::OpenAPI::fromJsonValue(d->file, json[QString("file")]);
     d->file_isSet = !json[QString("file")].isNull() && d->file_isValid;
 
@@ -499,6 +509,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->deleted.isSet()) {
         obj.insert(QString("deleted"), ::OpenAPI::toJsonValue(d->deleted));
+    }
+    if (d->pending_operations.isSet()) {
+        obj.insert(QString("pendingOperations"), ::OpenAPI::toJsonValue(d->pending_operations));
     }
     if (d->file.isSet()) {
         obj.insert(QString("file"), ::OpenAPI::toJsonValue(d->file));
@@ -992,6 +1005,38 @@ bool OAIDriveItem::is_deleted_Valid() const{
         return false;
     }
     return d->deleted_isValid;
+}
+
+OAIPendingOperations OAIDriveItem::getPendingOperations() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->pending_operations;
+}
+void OAIDriveItem::setPendingOperations(const OAIPendingOperations &pending_operations) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->pending_operations = pending_operations;
+    d->pending_operations_isSet = true;
+}
+
+bool OAIDriveItem::is_pending_operations_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->pending_operations_isSet;
+}
+
+bool OAIDriveItem::is_pending_operations_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->pending_operations_isValid;
 }
 
 OAIOpenGraphFile OAIDriveItem::getFile() const {
@@ -1862,6 +1907,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->deleted.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->pending_operations.isSet()) {
             isObjectUpdated = true;
             break;
         }

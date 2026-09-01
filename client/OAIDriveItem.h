@@ -36,6 +36,7 @@
 #include "OAIMotionPhoto.h"
 #include "OAIObject.h"
 #include "OAIOpenGraphFile.h"
+#include "OAIPendingOperations.h"
 #include "OAIPermission.h"
 #include "OAIPhoto.h"
 #include "OAIRemoteItem.h"
@@ -54,6 +55,7 @@ namespace OpenAPI {
 class OAIIdentitySet;
 class OAIItemReference;
 class OAIDeleted;
+class OAIPendingOperations;
 class OAIOpenGraphFile;
 class OAIFileSystemInfo;
 class OAIFolder;
@@ -149,6 +151,11 @@ public:
     void setDeleted(const OAIDeleted &deleted);
     bool is_deleted_Set() const;
     bool is_deleted_Valid() const;
+
+    OAIPendingOperations getPendingOperations() const;
+    void setPendingOperations(const OAIPendingOperations &pending_operations);
+    bool is_pending_operations_Set() const;
+    bool is_pending_operations_Valid() const;
 
     OAIOpenGraphFile getFile() const;
     void setFile(const OAIOpenGraphFile &file);
