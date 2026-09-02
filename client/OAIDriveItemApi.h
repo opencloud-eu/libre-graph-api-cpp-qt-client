@@ -82,8 +82,9 @@ public:
     * @param[in]  drive_id QString [required]
     * @param[in]  item_id QString [required]
     * @param[in]  select QSet<QString> [optional]
+    * @param[in]  expand QSet<QString> [optional]
     */
-    void getDriveItem(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void getDriveItem(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
     * @param[in]  drive_id QString [required]
@@ -102,8 +103,9 @@ public:
     * @param[in]  drive_id QString [required]
     * @param[in]  item_id QString [required]
     * @param[in]  select QSet<QString> [optional]
+    * @param[in]  expand QSet<QString> [optional]
     */
-    void getDriveItemV1(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void getDriveItemV1(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
     * @param[in]  drive_id QString [required]

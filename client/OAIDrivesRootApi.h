@@ -97,8 +97,9 @@ public:
     /**
     * @param[in]  drive_id QString [required]
     * @param[in]  select QSet<QString> [optional]
+    * @param[in]  expand QSet<QString> [optional]
     */
-    void getRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void getRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
     * @param[in]  drive_id QString [required]
