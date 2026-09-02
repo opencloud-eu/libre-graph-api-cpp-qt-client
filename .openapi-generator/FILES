@@ -148,6 +148,8 @@ client/OAIItemReference.cpp
 client/OAIItemReference.h
 client/OAILivePhoto.cpp
 client/OAILivePhoto.h
+client/OAILockInfo.cpp
+client/OAILockInfo.h
 client/OAIMeChangepasswordApi.cpp
 client/OAIMeChangepasswordApi.h
 client/OAIMeDriveApi.cpp

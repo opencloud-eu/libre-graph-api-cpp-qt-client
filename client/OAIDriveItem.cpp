@@ -159,6 +159,10 @@ class OAIDriveItemPrivate {
      bool libre_graph_live_photo_isSet;
      bool libre_graph_live_photo_isValid;
 
+     OAILockInfo lock_info;
+     bool lock_info_isSet;
+     bool lock_info_isValid;
+
      bool client_synchronize;
      bool client_synchronize_isSet;
      bool client_synchronize_isValid;
@@ -312,6 +316,9 @@ void OAIDriveItem::initializeModel() {
         d->libre_graph_live_photo_isSet = false;
         d->libre_graph_live_photo_isValid = false;
 
+        d->lock_info_isSet = false;
+        d->lock_info_isValid = false;
+
         d->client_synchronize_isSet = false;
         d->client_synchronize_isValid = false;
 
@@ -446,6 +453,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->libre_graph_live_photo_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_live_photo, json[QString("@libre.graph.livePhoto")]);
     d->libre_graph_live_photo_isSet = !json[QString("@libre.graph.livePhoto")].isNull() && d->libre_graph_live_photo_isValid;
 
+    d->lock_info_isValid = ::OpenAPI::fromJsonValue(d->lock_info, json[QString("lockInfo")]);
+    d->lock_info_isSet = !json[QString("lockInfo")].isNull() && d->lock_info_isValid;
+
     d->client_synchronize_isValid = ::OpenAPI::fromJsonValue(d->client_synchronize, json[QString("@client.synchronize")]);
     d->client_synchronize_isSet = !json[QString("@client.synchronize")].isNull() && d->client_synchronize_isValid;
 
@@ -579,6 +589,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->libre_graph_live_photo.isSet()) {
         obj.insert(QString("@libre.graph.livePhoto"), ::OpenAPI::toJsonValue(d->libre_graph_live_photo));
+    }
+    if (d->lock_info.isSet()) {
+        obj.insert(QString("lockInfo"), ::OpenAPI::toJsonValue(d->lock_info));
     }
     if (d->client_synchronize_isSet) {
         obj.insert(QString("@client.synchronize"), ::OpenAPI::toJsonValue(d->client_synchronize));
@@ -1660,6 +1673,38 @@ bool OAIDriveItem::is_libre_graph_live_photo_Valid() const{
     return d->libre_graph_live_photo_isValid;
 }
 
+OAILockInfo OAIDriveItem::getLockInfo() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->lock_info;
+}
+void OAIDriveItem::setLockInfo(const OAILockInfo &lock_info) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->lock_info = lock_info;
+    d->lock_info_isSet = true;
+}
+
+bool OAIDriveItem::is_lock_info_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->lock_info_isSet;
+}
+
+bool OAIDriveItem::is_lock_info_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->lock_info_isValid;
+}
+
 bool OAIDriveItem::isClientSynchronize() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -2052,6 +2097,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->libre_graph_live_photo.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->lock_info.isSet()) {
             isObjectUpdated = true;
             break;
         }

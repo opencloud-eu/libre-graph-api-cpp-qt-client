@@ -33,6 +33,7 @@
 #include "OAIImage.h"
 #include "OAIItemReference.h"
 #include "OAILivePhoto.h"
+#include "OAILockInfo.h"
 #include "OAIMotionPhoto.h"
 #include "OAIObject.h"
 #include "OAIOpenGraphFile.h"
@@ -71,6 +72,7 @@ class OAIAudio;
 class OAIVideo;
 class OAIMotionPhoto;
 class OAILivePhoto;
+class OAILockInfo;
 
 
 class OAIDriveItemPrivate;
@@ -251,6 +253,11 @@ public:
     void setLibreGraphLivePhoto(const OAILivePhoto &libre_graph_live_photo);
     bool is_libre_graph_live_photo_Set() const;
     bool is_libre_graph_live_photo_Valid() const;
+
+    OAILockInfo getLockInfo() const;
+    void setLockInfo(const OAILockInfo &lock_info);
+    bool is_lock_info_Set() const;
+    bool is_lock_info_Valid() const;
 
     bool isClientSynchronize() const;
     void setClientSynchronize(const bool &client_synchronize);
