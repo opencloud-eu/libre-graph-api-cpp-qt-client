@@ -27,6 +27,10 @@ namespace OpenAPI {
 class OAIDriveRecipientPrivate {
     friend class OAIDriveRecipient;
 
+     QString email;
+     bool email_isSet;
+     bool email_isValid;
+
      QString object_id;
      bool object_id_isSet;
      bool object_id_isValid;
@@ -61,6 +65,9 @@ void OAIDriveRecipient::initializeModel() {
         Q_D(OAIDriveRecipient);
 
 
+        d->email_isSet = false;
+        d->email_isValid = false;
+
         d->object_id_isSet = false;
         d->object_id_isValid = false;
 
@@ -80,6 +87,9 @@ void OAIDriveRecipient::fromJsonObject(QJsonObject json) {
     initializeModel();
 
     Q_D(OAIDriveRecipient);
+
+    d->email_isValid = ::OpenAPI::fromJsonValue(d->email, json[QString("email")]);
+    d->email_isSet = !json[QString("email")].isNull() && d->email_isValid;
 
     d->object_id_isValid = ::OpenAPI::fromJsonValue(d->object_id, json[QString("objectId")]);
     d->object_id_isSet = !json[QString("objectId")].isNull() && d->object_id_isValid;
@@ -101,6 +111,9 @@ QJsonObject OAIDriveRecipient::asJsonObject() const {
         return {};
     }
     QJsonObject obj;
+    if (d->email_isSet) {
+        obj.insert(QString("email"), ::OpenAPI::toJsonValue(d->email));
+    }
     if (d->object_id_isSet) {
         obj.insert(QString("objectId"), ::OpenAPI::toJsonValue(d->object_id));
     }
@@ -108,6 +121,38 @@ QJsonObject OAIDriveRecipient::asJsonObject() const {
         obj.insert(QString("@libre.graph.recipient.type"), ::OpenAPI::toJsonValue(d->libre_graph_recipient_type));
     }
     return obj;
+}
+
+QString OAIDriveRecipient::getEmail() const {
+    Q_D(const OAIDriveRecipient);
+    if(!d){
+        return {};
+    }
+    return d->email;
+}
+void OAIDriveRecipient::setEmail(const QString &email) {
+    Q_D(OAIDriveRecipient);
+    Q_ASSERT(d);
+
+    d->email = email;
+    d->email_isSet = true;
+}
+
+bool OAIDriveRecipient::is_email_Set() const{
+    Q_D(const OAIDriveRecipient);
+    if(!d){
+        return false;
+    }
+
+    return d->email_isSet;
+}
+
+bool OAIDriveRecipient::is_email_Valid() const{
+    Q_D(const OAIDriveRecipient);
+    if(!d){
+        return false;
+    }
+    return d->email_isValid;
 }
 
 QString OAIDriveRecipient::getObjectId() const {
@@ -181,6 +226,11 @@ bool OAIDriveRecipient::isSet() const {
     }
     bool isObjectUpdated = false;
     do {
+        if (d->email_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (d->object_id_isSet) {
             isObjectUpdated = true;
             break;

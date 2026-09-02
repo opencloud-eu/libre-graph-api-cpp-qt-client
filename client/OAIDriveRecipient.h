@@ -46,6 +46,11 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
+    QString getEmail() const;
+    void setEmail(const QString &email);
+    bool is_email_Set() const;
+    bool is_email_Valid() const;
+
     QString getObjectId() const;
     void setObjectId(const QString &object_id);
     bool is_object_id_Set() const;
