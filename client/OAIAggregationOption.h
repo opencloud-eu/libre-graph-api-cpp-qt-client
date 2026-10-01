@@ -16,7 +16,7 @@
 /*
  * OAIAggregationOption.h
  *
- * Specifies an aggregation that should be computed and returned alongside search results. Follows the [MS Graph aggregationOption](https://learn.microsoft.com/en-us/graph/api/resources/aggregationoption) resource type.  For string fields, terms aggregations return the distinct values and their counts. For numeric and date fields, range aggregations can be defined using the &#x60;ranges&#x60; property of &#x60;bucketDefinition&#x60;. 
+ * Specifies an aggregation that should be computed and returned alongside search results. Follows the [MS Graph aggregationOption](https://learn.microsoft.com/en-us/graph/api/resources/aggregationoption) resource type.  For string fields, terms aggregations return the distinct values and their counts. For numeric and date fields, range aggregations can be defined using the &#x60;ranges&#x60; property of &#x60;bucketDefinition&#x60;.  At most one of &#x60;bucketDefinition&#x60;, &#x60;@libre.graph.metricDefinition&#x60; and &#x60;@libre.graph.geohashDefinition&#x60; may be set; requests specifying more than one are rejected with &#x60;invalidRequest&#x60;. 
  */
 
 #ifndef OAIAggregationOption_H
@@ -25,6 +25,7 @@
 #include <QJsonObject>
 
 #include "OAIBucketDefinition.h"
+#include "OAIGeohashDefinition.h"
 #include "OAIMetricDefinition.h"
 #include <QList>
 #include <QString>
@@ -35,6 +36,7 @@
 namespace OpenAPI {
 class OAIBucketDefinition;
 class OAIMetricDefinition;
+class OAIGeohashDefinition;
 
 
 class OAIAggregationOptionPrivate;
@@ -75,6 +77,11 @@ public:
     void setLibreGraphMetricDefinition(const OAIMetricDefinition &libre_graph_metric_definition);
     bool is_libre_graph_metric_definition_Set() const;
     bool is_libre_graph_metric_definition_Valid() const;
+
+    OAIGeohashDefinition getLibreGraphGeohashDefinition() const;
+    void setLibreGraphGeohashDefinition(const OAIGeohashDefinition &libre_graph_geohash_definition);
+    bool is_libre_graph_geohash_definition_Set() const;
+    bool is_libre_graph_geohash_definition_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

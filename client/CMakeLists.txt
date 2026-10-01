@@ -76,6 +76,7 @@ add_library(client
     OAIFolder.cpp
     OAIFolderView.cpp
     OAIGeoCoordinates.cpp
+    OAIGeohashDefinition.cpp
     OAIGroup.cpp
     OAIGuestLinkError.cpp
     OAIGuestLinkRedeemRequest.cpp
@@ -238,6 +239,7 @@ set(HEADER
     OAIFolder.h
     OAIFolderView.h
     OAIGeoCoordinates.h
+    OAIGeohashDefinition.h
     OAIGroup.h
     OAIGuestLinkError.h
     OAIGuestLinkRedeemRequest.h

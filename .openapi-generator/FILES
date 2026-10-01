@@ -124,6 +124,8 @@ client/OAIFolderView.cpp
 client/OAIFolderView.h
 client/OAIGeoCoordinates.cpp
 client/OAIGeoCoordinates.h
+client/OAIGeohashDefinition.cpp
+client/OAIGeohashDefinition.h
 client/OAIGroup.cpp
 client/OAIGroup.h
 client/OAIGroupApi.cpp

@@ -46,6 +46,10 @@ class OAIAggregationOptionPrivate {
      OAIMetricDefinition libre_graph_metric_definition;
      bool libre_graph_metric_definition_isSet;
      bool libre_graph_metric_definition_isValid;
+
+     OAIGeohashDefinition libre_graph_geohash_definition;
+     bool libre_graph_geohash_definition_isSet;
+     bool libre_graph_geohash_definition_isValid;
 };
 
 OAIAggregationOption::OAIAggregationOption()
@@ -87,6 +91,9 @@ void OAIAggregationOption::initializeModel() {
 
         d->libre_graph_metric_definition_isSet = false;
         d->libre_graph_metric_definition_isValid = false;
+
+        d->libre_graph_geohash_definition_isSet = false;
+        d->libre_graph_geohash_definition_isValid = false;
     }
 }
 
@@ -116,6 +123,9 @@ void OAIAggregationOption::fromJsonObject(QJsonObject json) {
 
     d->libre_graph_metric_definition_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_metric_definition, json[QString("@libre.graph.metricDefinition")]);
     d->libre_graph_metric_definition_isSet = !json[QString("@libre.graph.metricDefinition")].isNull() && d->libre_graph_metric_definition_isValid;
+
+    d->libre_graph_geohash_definition_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_geohash_definition, json[QString("@libre.graph.geohashDefinition")]);
+    d->libre_graph_geohash_definition_isSet = !json[QString("@libre.graph.geohashDefinition")].isNull() && d->libre_graph_geohash_definition_isValid;
 }
 
 QString OAIAggregationOption::asJson() const {
@@ -145,6 +155,9 @@ QJsonObject OAIAggregationOption::asJsonObject() const {
     }
     if (d->libre_graph_metric_definition.isSet()) {
         obj.insert(QString("@libre.graph.metricDefinition"), ::OpenAPI::toJsonValue(d->libre_graph_metric_definition));
+    }
+    if (d->libre_graph_geohash_definition.isSet()) {
+        obj.insert(QString("@libre.graph.geohashDefinition"), ::OpenAPI::toJsonValue(d->libre_graph_geohash_definition));
     }
     return obj;
 }
@@ -309,6 +322,38 @@ bool OAIAggregationOption::is_libre_graph_metric_definition_Valid() const{
     return d->libre_graph_metric_definition_isValid;
 }
 
+OAIGeohashDefinition OAIAggregationOption::getLibreGraphGeohashDefinition() const {
+    Q_D(const OAIAggregationOption);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_geohash_definition;
+}
+void OAIAggregationOption::setLibreGraphGeohashDefinition(const OAIGeohashDefinition &libre_graph_geohash_definition) {
+    Q_D(OAIAggregationOption);
+    Q_ASSERT(d);
+
+    d->libre_graph_geohash_definition = libre_graph_geohash_definition;
+    d->libre_graph_geohash_definition_isSet = true;
+}
+
+bool OAIAggregationOption::is_libre_graph_geohash_definition_Set() const{
+    Q_D(const OAIAggregationOption);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_geohash_definition_isSet;
+}
+
+bool OAIAggregationOption::is_libre_graph_geohash_definition_Valid() const{
+    Q_D(const OAIAggregationOption);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_geohash_definition_isValid;
+}
+
 bool OAIAggregationOption::isSet() const {
     Q_D(const OAIAggregationOption);
     if(!d){
@@ -337,6 +382,11 @@ bool OAIAggregationOption::isSet() const {
         }
 
         if (d->libre_graph_metric_definition.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->libre_graph_geohash_definition.isSet()) {
             isObjectUpdated = true;
             break;
         }

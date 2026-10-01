@@ -16,7 +16,7 @@
 /*
  * OAISearchMetric.h
  *
- * The result of a metric aggregation, the counterpart of &#x60;buckets&#x60; for aggregations requested with a &#x60;@libre.graph.metricDefinition&#x60;. Absent for terms and range aggregations. Libregraph extension not present in MS Graph. 
+ * The result of a metric aggregation, the counterpart of &#x60;buckets&#x60; for aggregations requested with a &#x60;@libre.graph.metricDefinition&#x60;. Absent for terms, range and geohash aggregations. Libregraph extension not present in MS Graph. 
  */
 
 #ifndef OAISearchMetric_H

@@ -52,6 +52,7 @@ HEADERS += \
     $${PWD}/OAIFolder.h \
     $${PWD}/OAIFolderView.h \
     $${PWD}/OAIGeoCoordinates.h \
+    $${PWD}/OAIGeohashDefinition.h \
     $${PWD}/OAIGroup.h \
     $${PWD}/OAIGuestLinkError.h \
     $${PWD}/OAIGuestLinkRedeemRequest.h \
@@ -203,6 +204,7 @@ SOURCES += \
     $${PWD}/OAIFolder.cpp \
     $${PWD}/OAIFolderView.cpp \
     $${PWD}/OAIGeoCoordinates.cpp \
+    $${PWD}/OAIGeohashDefinition.cpp \
     $${PWD}/OAIGroup.cpp \
     $${PWD}/OAIGuestLinkError.cpp \
     $${PWD}/OAIGuestLinkRedeemRequest.cpp \

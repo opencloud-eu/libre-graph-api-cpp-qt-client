@@ -16,7 +16,7 @@
 /*
  * OAIMetricDefinition.h
  *
- * Provides the details of how to compute a scalar metric over the aggregation &#x60;field&#x60;, the counterpart of &#x60;bucketDefinition&#x60; for metric aggregations. When set on an &#x60;aggregationOption&#x60;, &#x60;size&#x60; and &#x60;bucketDefinition&#x60; are ignored, and the corresponding &#x60;searchAggregation&#x60; in the response carries a &#x60;@libre.graph.metric&#x60; rather than &#x60;buckets&#x60;. Libregraph extension not present in MS Graph. 
+ * Provides the details of how to compute a scalar metric over the aggregation &#x60;field&#x60;, the counterpart of &#x60;bucketDefinition&#x60; for metric aggregations. When set on an &#x60;aggregationOption&#x60;, &#x60;size&#x60; is ignored, and the corresponding &#x60;searchAggregation&#x60; in the response carries a &#x60;@libre.graph.metric&#x60; rather than &#x60;buckets&#x60;. Libregraph extension not present in MS Graph. 
  */
 
 #ifndef OAIMetricDefinition_H
