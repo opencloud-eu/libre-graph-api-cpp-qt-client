@@ -7,10 +7,13 @@ HEADERS += \
     $${PWD}/OAIActivityTopic.h \
     $${PWD}/OAIActivity_template.h \
     $${PWD}/OAIActivity_times.h \
+    $${PWD}/OAIAggregationOption.h \
     $${PWD}/OAIAppRole.h \
     $${PWD}/OAIAppRoleAssignment.h \
     $${PWD}/OAIApplication.h \
     $${PWD}/OAIAudio.h \
+    $${PWD}/OAIBucketAggregationRange.h \
+    $${PWD}/OAIBucketDefinition.h \
     $${PWD}/OAIClass_Member_Reference.h \
     $${PWD}/OAIClass_Reference.h \
     $${PWD}/OAIClass_Teacher_Reference.h \
@@ -63,6 +66,7 @@ HEADERS += \
     $${PWD}/OAILivePhoto.h \
     $${PWD}/OAILockInfo.h \
     $${PWD}/OAIMember_Reference.h \
+    $${PWD}/OAIMetricDefinition.h \
     $${PWD}/OAIMotionPhoto.h \
     $${PWD}/OAIObjectIdentity.h \
     $${PWD}/OAIOdata_error.h \
@@ -78,6 +82,16 @@ HEADERS += \
     $${PWD}/OAIQuota.h \
     $${PWD}/OAIRecipient.h \
     $${PWD}/OAIRemoteItem.h \
+    $${PWD}/OAISearchAggregation.h \
+    $${PWD}/OAISearchBucket.h \
+    $${PWD}/OAISearchHit.h \
+    $${PWD}/OAISearchHitsContainer.h \
+    $${PWD}/OAISearchMetric.h \
+    $${PWD}/OAISearchQuery.h \
+    $${PWD}/OAISearchQuery_200_response.h \
+    $${PWD}/OAISearchQuery_request.h \
+    $${PWD}/OAISearchRequest.h \
+    $${PWD}/OAISearchResponse.h \
     $${PWD}/OAISharePointIdentitySet.h \
     $${PWD}/OAISharingInvitation.h \
     $${PWD}/OAISharingLink.h \
@@ -119,6 +133,7 @@ HEADERS += \
     $${PWD}/OAIMePhotoApi.h \
     $${PWD}/OAIMeUserApi.h \
     $${PWD}/OAIRoleManagementApi.h \
+    $${PWD}/OAISearchApi.h \
     $${PWD}/OAITagsApi.h \
     $${PWD}/OAIUserApi.h \
     $${PWD}/OAIUserAppRoleAssignmentApi.h \
@@ -142,10 +157,13 @@ SOURCES += \
     $${PWD}/OAIActivityTopic.cpp \
     $${PWD}/OAIActivity_template.cpp \
     $${PWD}/OAIActivity_times.cpp \
+    $${PWD}/OAIAggregationOption.cpp \
     $${PWD}/OAIAppRole.cpp \
     $${PWD}/OAIAppRoleAssignment.cpp \
     $${PWD}/OAIApplication.cpp \
     $${PWD}/OAIAudio.cpp \
+    $${PWD}/OAIBucketAggregationRange.cpp \
+    $${PWD}/OAIBucketDefinition.cpp \
     $${PWD}/OAIClass_Member_Reference.cpp \
     $${PWD}/OAIClass_Reference.cpp \
     $${PWD}/OAIClass_Teacher_Reference.cpp \
@@ -198,6 +216,7 @@ SOURCES += \
     $${PWD}/OAILivePhoto.cpp \
     $${PWD}/OAILockInfo.cpp \
     $${PWD}/OAIMember_Reference.cpp \
+    $${PWD}/OAIMetricDefinition.cpp \
     $${PWD}/OAIMotionPhoto.cpp \
     $${PWD}/OAIObjectIdentity.cpp \
     $${PWD}/OAIOdata_error.cpp \
@@ -213,6 +232,16 @@ SOURCES += \
     $${PWD}/OAIQuota.cpp \
     $${PWD}/OAIRecipient.cpp \
     $${PWD}/OAIRemoteItem.cpp \
+    $${PWD}/OAISearchAggregation.cpp \
+    $${PWD}/OAISearchBucket.cpp \
+    $${PWD}/OAISearchHit.cpp \
+    $${PWD}/OAISearchHitsContainer.cpp \
+    $${PWD}/OAISearchMetric.cpp \
+    $${PWD}/OAISearchQuery.cpp \
+    $${PWD}/OAISearchQuery_200_response.cpp \
+    $${PWD}/OAISearchQuery_request.cpp \
+    $${PWD}/OAISearchRequest.cpp \
+    $${PWD}/OAISearchResponse.cpp \
     $${PWD}/OAISharePointIdentitySet.cpp \
     $${PWD}/OAISharingInvitation.cpp \
     $${PWD}/OAISharingLink.cpp \
@@ -254,6 +283,7 @@ SOURCES += \
     $${PWD}/OAIMePhotoApi.cpp \
     $${PWD}/OAIMeUserApi.cpp \
     $${PWD}/OAIRoleManagementApi.cpp \
+    $${PWD}/OAISearchApi.cpp \
     $${PWD}/OAITagsApi.cpp \
     $${PWD}/OAIUserApi.cpp \
     $${PWD}/OAIUserAppRoleAssignmentApi.cpp \

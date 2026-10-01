@@ -31,10 +31,13 @@ add_library(client
     OAIActivityTopic.cpp
     OAIActivity_template.cpp
     OAIActivity_times.cpp
+    OAIAggregationOption.cpp
     OAIAppRole.cpp
     OAIAppRoleAssignment.cpp
     OAIApplication.cpp
     OAIAudio.cpp
+    OAIBucketAggregationRange.cpp
+    OAIBucketDefinition.cpp
     OAIClass_Member_Reference.cpp
     OAIClass_Reference.cpp
     OAIClass_Teacher_Reference.cpp
@@ -87,6 +90,7 @@ add_library(client
     OAILivePhoto.cpp
     OAILockInfo.cpp
     OAIMember_Reference.cpp
+    OAIMetricDefinition.cpp
     OAIMotionPhoto.cpp
     OAIObjectIdentity.cpp
     OAIOdata_error.cpp
@@ -102,6 +106,16 @@ add_library(client
     OAIQuota.cpp
     OAIRecipient.cpp
     OAIRemoteItem.cpp
+    OAISearchAggregation.cpp
+    OAISearchBucket.cpp
+    OAISearchHit.cpp
+    OAISearchHitsContainer.cpp
+    OAISearchMetric.cpp
+    OAISearchQuery.cpp
+    OAISearchQuery_200_response.cpp
+    OAISearchQuery_request.cpp
+    OAISearchRequest.cpp
+    OAISearchResponse.cpp
     OAISharePointIdentitySet.cpp
     OAISharingInvitation.cpp
     OAISharingLink.cpp
@@ -142,6 +156,7 @@ add_library(client
     OAIMePhotoApi.cpp
     OAIMeUserApi.cpp
     OAIRoleManagementApi.cpp
+    OAISearchApi.cpp
     OAITagsApi.cpp
     OAIUserApi.cpp
     OAIUserAppRoleAssignmentApi.cpp
@@ -177,10 +192,13 @@ set(HEADER
     OAIActivityTopic.h
     OAIActivity_template.h
     OAIActivity_times.h
+    OAIAggregationOption.h
     OAIAppRole.h
     OAIAppRoleAssignment.h
     OAIApplication.h
     OAIAudio.h
+    OAIBucketAggregationRange.h
+    OAIBucketDefinition.h
     OAIClass_Member_Reference.h
     OAIClass_Reference.h
     OAIClass_Teacher_Reference.h
@@ -233,6 +251,7 @@ set(HEADER
     OAILivePhoto.h
     OAILockInfo.h
     OAIMember_Reference.h
+    OAIMetricDefinition.h
     OAIMotionPhoto.h
     OAIObjectIdentity.h
     OAIOdata_error.h
@@ -248,6 +267,16 @@ set(HEADER
     OAIQuota.h
     OAIRecipient.h
     OAIRemoteItem.h
+    OAISearchAggregation.h
+    OAISearchBucket.h
+    OAISearchHit.h
+    OAISearchHitsContainer.h
+    OAISearchMetric.h
+    OAISearchQuery.h
+    OAISearchQuery_200_response.h
+    OAISearchQuery_request.h
+    OAISearchRequest.h
+    OAISearchResponse.h
     OAISharePointIdentitySet.h
     OAISharingInvitation.h
     OAISharingLink.h
@@ -288,6 +317,7 @@ set(HEADER
     OAIMePhotoApi.h
     OAIMeUserApi.h
     OAIRoleManagementApi.h
+    OAISearchApi.h
     OAITagsApi.h
     OAIUserApi.h
     OAIUserAppRoleAssignmentApi.h
