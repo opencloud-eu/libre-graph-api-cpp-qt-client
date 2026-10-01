@@ -124,6 +124,14 @@ client/OAIGroupApi.cpp
 client/OAIGroupApi.h
 client/OAIGroupsApi.cpp
 client/OAIGroupsApi.h
+client/OAIGuestLinkError.cpp
+client/OAIGuestLinkError.h
+client/OAIGuestLinkRedeemRequest.cpp
+client/OAIGuestLinkRedeemRequest.h
+client/OAIGuestLinkRedeemResponse.cpp
+client/OAIGuestLinkRedeemResponse.h
+client/OAIGuestLinksApi.cpp
+client/OAIGuestLinksApi.h
 client/OAIHashes.cpp
 client/OAIHashes.h
 client/OAIHelpers.cpp

@@ -50,6 +50,9 @@ HEADERS += \
     $${PWD}/OAIFolderView.h \
     $${PWD}/OAIGeoCoordinates.h \
     $${PWD}/OAIGroup.h \
+    $${PWD}/OAIGuestLinkError.h \
+    $${PWD}/OAIGuestLinkRedeemRequest.h \
+    $${PWD}/OAIGuestLinkRedeemResponse.h \
     $${PWD}/OAIHashes.h \
     $${PWD}/OAIIdentity.h \
     $${PWD}/OAIIdentitySet.h \
@@ -106,6 +109,7 @@ HEADERS += \
     $${PWD}/OAIEducationUserApi.h \
     $${PWD}/OAIGroupApi.h \
     $${PWD}/OAIGroupsApi.h \
+    $${PWD}/OAIGuestLinksApi.h \
     $${PWD}/OAIInvitationsApi.h \
     $${PWD}/OAIMeChangepasswordApi.h \
     $${PWD}/OAIMeDriveApi.h \
@@ -181,6 +185,9 @@ SOURCES += \
     $${PWD}/OAIFolderView.cpp \
     $${PWD}/OAIGeoCoordinates.cpp \
     $${PWD}/OAIGroup.cpp \
+    $${PWD}/OAIGuestLinkError.cpp \
+    $${PWD}/OAIGuestLinkRedeemRequest.cpp \
+    $${PWD}/OAIGuestLinkRedeemResponse.cpp \
     $${PWD}/OAIHashes.cpp \
     $${PWD}/OAIIdentity.cpp \
     $${PWD}/OAIIdentitySet.cpp \
@@ -237,6 +244,7 @@ SOURCES += \
     $${PWD}/OAIEducationUserApi.cpp \
     $${PWD}/OAIGroupApi.cpp \
     $${PWD}/OAIGroupsApi.cpp \
+    $${PWD}/OAIGuestLinksApi.cpp \
     $${PWD}/OAIInvitationsApi.cpp \
     $${PWD}/OAIMeChangepasswordApi.cpp \
     $${PWD}/OAIMeDriveApi.cpp \

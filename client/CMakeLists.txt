@@ -74,6 +74,9 @@ add_library(client
     OAIFolderView.cpp
     OAIGeoCoordinates.cpp
     OAIGroup.cpp
+    OAIGuestLinkError.cpp
+    OAIGuestLinkRedeemRequest.cpp
+    OAIGuestLinkRedeemResponse.cpp
     OAIHashes.cpp
     OAIIdentity.cpp
     OAIIdentitySet.cpp
@@ -129,6 +132,7 @@ add_library(client
     OAIEducationUserApi.cpp
     OAIGroupApi.cpp
     OAIGroupsApi.cpp
+    OAIGuestLinksApi.cpp
     OAIInvitationsApi.cpp
     OAIMeChangepasswordApi.cpp
     OAIMeDriveApi.cpp
@@ -216,6 +220,9 @@ set(HEADER
     OAIFolderView.h
     OAIGeoCoordinates.h
     OAIGroup.h
+    OAIGuestLinkError.h
+    OAIGuestLinkRedeemRequest.h
+    OAIGuestLinkRedeemResponse.h
     OAIHashes.h
     OAIIdentity.h
     OAIIdentitySet.h
@@ -271,6 +278,7 @@ set(HEADER
     OAIEducationUserApi.h
     OAIGroupApi.h
     OAIGroupsApi.h
+    OAIGuestLinksApi.h
     OAIInvitationsApi.h
     OAIMeChangepasswordApi.h
     OAIMeDriveApi.h
