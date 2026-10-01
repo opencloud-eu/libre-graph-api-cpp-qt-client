@@ -122,6 +122,7 @@ add_library(client
     OAISharingLinkPassword.cpp
     OAISharingLinkType.cpp
     OAISignInActivity.cpp
+    OAISortProperty.cpp
     OAISpecialFolder.cpp
     OAITagAssignment.cpp
     OAITagUnassignment.cpp
@@ -283,6 +284,7 @@ set(HEADER
     OAISharingLinkPassword.h
     OAISharingLinkType.h
     OAISignInActivity.h
+    OAISortProperty.h
     OAISpecialFolder.h
     OAITagAssignment.h
     OAITagUnassignment.h

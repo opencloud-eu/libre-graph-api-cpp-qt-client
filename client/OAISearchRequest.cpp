@@ -50,6 +50,10 @@ class OAISearchRequestPrivate {
      QList<QString> aggregation_filters;
      bool aggregation_filters_isSet;
      bool aggregation_filters_isValid;
+
+     QList<OAISortProperty> sort_properties;
+     bool sort_properties_isSet;
+     bool sort_properties_isValid;
 };
 
 OAISearchRequest::OAISearchRequest()
@@ -94,6 +98,9 @@ void OAISearchRequest::initializeModel() {
 
         d->aggregation_filters_isSet = false;
         d->aggregation_filters_isValid = false;
+
+        d->sort_properties_isSet = false;
+        d->sort_properties_isValid = false;
     }
 }
 
@@ -126,6 +133,9 @@ void OAISearchRequest::fromJsonObject(QJsonObject json) {
 
     d->aggregation_filters_isValid = ::OpenAPI::fromJsonValue(d->aggregation_filters, json[QString("aggregationFilters")]);
     d->aggregation_filters_isSet = !json[QString("aggregationFilters")].isNull() && d->aggregation_filters_isValid;
+
+    d->sort_properties_isValid = ::OpenAPI::fromJsonValue(d->sort_properties, json[QString("sortProperties")]);
+    d->sort_properties_isSet = !json[QString("sortProperties")].isNull() && d->sort_properties_isValid;
 }
 
 QString OAISearchRequest::asJson() const {
@@ -158,6 +168,9 @@ QJsonObject OAISearchRequest::asJsonObject() const {
     }
     if (d->aggregation_filters.size() > 0) {
         obj.insert(QString("aggregationFilters"), ::OpenAPI::toJsonValue(d->aggregation_filters));
+    }
+    if (d->sort_properties.size() > 0) {
+        obj.insert(QString("sortProperties"), ::OpenAPI::toJsonValue(d->sort_properties));
     }
     return obj;
 }
@@ -354,6 +367,38 @@ bool OAISearchRequest::is_aggregation_filters_Valid() const{
     return d->aggregation_filters_isValid;
 }
 
+QList<OAISortProperty> OAISearchRequest::getSortProperties() const {
+    Q_D(const OAISearchRequest);
+    if(!d){
+        return {};
+    }
+    return d->sort_properties;
+}
+void OAISearchRequest::setSortProperties(const QList<OAISortProperty> &sort_properties) {
+    Q_D(OAISearchRequest);
+    Q_ASSERT(d);
+
+    d->sort_properties = sort_properties;
+    d->sort_properties_isSet = true;
+}
+
+bool OAISearchRequest::is_sort_properties_Set() const{
+    Q_D(const OAISearchRequest);
+    if(!d){
+        return false;
+    }
+
+    return d->sort_properties_isSet;
+}
+
+bool OAISearchRequest::is_sort_properties_Valid() const{
+    Q_D(const OAISearchRequest);
+    if(!d){
+        return false;
+    }
+    return d->sort_properties_isValid;
+}
+
 bool OAISearchRequest::isSet() const {
     Q_D(const OAISearchRequest);
     if(!d){
@@ -387,6 +432,11 @@ bool OAISearchRequest::isSet() const {
         }
 
         if (d->aggregation_filters.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->sort_properties.size() > 0) {
             isObjectUpdated = true;
             break;
         }

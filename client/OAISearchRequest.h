@@ -26,6 +26,7 @@
 
 #include "OAIAggregationOption.h"
 #include "OAISearchQuery.h"
+#include "OAISortProperty.h"
 #include <QList>
 #include <QString>
 
@@ -35,6 +36,7 @@
 namespace OpenAPI {
 class OAISearchQuery;
 class OAIAggregationOption;
+class OAISortProperty;
 
 
 class OAISearchRequestPrivate;
@@ -80,6 +82,11 @@ public:
     void setAggregationFilters(const QList<QString> &aggregation_filters);
     bool is_aggregation_filters_Set() const;
     bool is_aggregation_filters_Valid() const;
+
+    QList<OAISortProperty> getSortProperties() const;
+    void setSortProperties(const QList<OAISortProperty> &sort_properties);
+    bool is_sort_properties_Set() const;
+    bool is_sort_properties_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

@@ -253,6 +253,8 @@ client/OAISharingLinkType.cpp
 client/OAISharingLinkType.h
 client/OAISignInActivity.cpp
 client/OAISignInActivity.h
+client/OAISortProperty.cpp
+client/OAISortProperty.h
 client/OAISpecialFolder.cpp
 client/OAISpecialFolder.h
 client/OAITagAssignment.cpp
