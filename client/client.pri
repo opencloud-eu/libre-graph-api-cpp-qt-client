@@ -55,8 +55,10 @@ HEADERS += \
     $${PWD}/OAIGeohashDefinition.h \
     $${PWD}/OAIGroup.h \
     $${PWD}/OAIGuestLinkError.h \
-    $${PWD}/OAIGuestLinkRedeemRequest.h \
-    $${PWD}/OAIGuestLinkRedeemResponse.h \
+    $${PWD}/OAIGuestLinkRenewRequest.h \
+    $${PWD}/OAIGuestLinkSessionResponse.h \
+    $${PWD}/OAIGuestLinkVerifyPinRequest.h \
+    $${PWD}/OAIGuestLinkVerifyTokenRequest.h \
     $${PWD}/OAIHashes.h \
     $${PWD}/OAIIdentity.h \
     $${PWD}/OAIIdentitySet.h \
@@ -207,8 +209,10 @@ SOURCES += \
     $${PWD}/OAIGeohashDefinition.cpp \
     $${PWD}/OAIGroup.cpp \
     $${PWD}/OAIGuestLinkError.cpp \
-    $${PWD}/OAIGuestLinkRedeemRequest.cpp \
-    $${PWD}/OAIGuestLinkRedeemResponse.cpp \
+    $${PWD}/OAIGuestLinkRenewRequest.cpp \
+    $${PWD}/OAIGuestLinkSessionResponse.cpp \
+    $${PWD}/OAIGuestLinkVerifyPinRequest.cpp \
+    $${PWD}/OAIGuestLinkVerifyTokenRequest.cpp \
     $${PWD}/OAIHashes.cpp \
     $${PWD}/OAIIdentity.cpp \
     $${PWD}/OAIIdentitySet.cpp \

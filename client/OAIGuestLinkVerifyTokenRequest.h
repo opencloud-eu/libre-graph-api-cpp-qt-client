@@ -14,13 +14,13 @@
  */
 
 /*
- * OAIGuestLinkRedeemRequest.h
+ * OAIGuestLinkVerifyTokenRequest.h
  *
- * Request body for redeeming a guest link token.
+ * Request body for verifying a guest link token.
  */
 
-#ifndef OAIGuestLinkRedeemRequest_H
-#define OAIGuestLinkRedeemRequest_H
+#ifndef OAIGuestLinkVerifyTokenRequest_H
+#define OAIGuestLinkVerifyTokenRequest_H
 
 #include <QJsonObject>
 
@@ -32,14 +32,14 @@
 namespace OpenAPI {
 
 
-class OAIGuestLinkRedeemRequestPrivate;
+class OAIGuestLinkVerifyTokenRequestPrivate;
 
-class OAIGuestLinkRedeemRequest : public OAIObject {
+class OAIGuestLinkVerifyTokenRequest : public OAIObject {
 public:
-    OAIGuestLinkRedeemRequest();
-    OAIGuestLinkRedeemRequest(const OAIGuestLinkRedeemRequest &other);
-    OAIGuestLinkRedeemRequest(QString json);
-    ~OAIGuestLinkRedeemRequest() override;
+    OAIGuestLinkVerifyTokenRequest();
+    OAIGuestLinkVerifyTokenRequest(const OAIGuestLinkVerifyTokenRequest &other);
+    OAIGuestLinkVerifyTokenRequest(QString json);
+    ~OAIGuestLinkVerifyTokenRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -56,12 +56,12 @@ public:
 
 private:
     void initializeModel();
-    Q_DECLARE_PRIVATE(OAIGuestLinkRedeemRequest)
-    QSharedPointer<OAIGuestLinkRedeemRequestPrivate> d_ptr;
+    Q_DECLARE_PRIVATE(OAIGuestLinkVerifyTokenRequest)
+    QSharedPointer<OAIGuestLinkVerifyTokenRequestPrivate> d_ptr;
 };
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIGuestLinkRedeemRequest)
+Q_DECLARE_METATYPE(OpenAPI::OAIGuestLinkVerifyTokenRequest)
 
-#endif // OAIGuestLinkRedeemRequest_H
+#endif // OAIGuestLinkVerifyTokenRequest_H

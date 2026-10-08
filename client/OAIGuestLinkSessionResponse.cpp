@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 
-#include "OAIGuestLinkRedeemResponse.h"
+#include "OAIGuestLinkSessionResponse.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -24,37 +24,37 @@
 
 namespace OpenAPI {
 
-class OAIGuestLinkRedeemResponsePrivate {
-    friend class OAIGuestLinkRedeemResponse;
+class OAIGuestLinkSessionResponsePrivate {
+    friend class OAIGuestLinkSessionResponse;
 
      QString permission_id;
      bool permission_id_isSet;
      bool permission_id_isValid;
 };
 
-OAIGuestLinkRedeemResponse::OAIGuestLinkRedeemResponse()
+OAIGuestLinkSessionResponse::OAIGuestLinkSessionResponse()
     : d_ptr()
 {
 }
 
-OAIGuestLinkRedeemResponse::OAIGuestLinkRedeemResponse(const OAIGuestLinkRedeemResponse& other)
+OAIGuestLinkSessionResponse::OAIGuestLinkSessionResponse(const OAIGuestLinkSessionResponse& other)
     : d_ptr(other.d_ptr)
 {
 }
 
-OAIGuestLinkRedeemResponse::OAIGuestLinkRedeemResponse(QString json)
+OAIGuestLinkSessionResponse::OAIGuestLinkSessionResponse(QString json)
     : d_ptr(nullptr)
 {
     this->fromJson(json);
 }
 
-OAIGuestLinkRedeemResponse::~OAIGuestLinkRedeemResponse() = default;
+OAIGuestLinkSessionResponse::~OAIGuestLinkSessionResponse() = default;
 
-void OAIGuestLinkRedeemResponse::initializeModel() {
+void OAIGuestLinkSessionResponse::initializeModel() {
     if (d_ptr == nullptr) {
-        d_ptr.reset(new OAIGuestLinkRedeemResponsePrivate{});
+        d_ptr.reset(new OAIGuestLinkSessionResponsePrivate{});
 
-        Q_D(OAIGuestLinkRedeemResponse);
+        Q_D(OAIGuestLinkSessionResponse);
 
 
         d->permission_id_isSet = false;
@@ -62,31 +62,31 @@ void OAIGuestLinkRedeemResponse::initializeModel() {
     }
 }
 
-void OAIGuestLinkRedeemResponse::fromJson(QString jsonString) {
+void OAIGuestLinkSessionResponse::fromJson(QString jsonString) {
     QByteArray array(jsonString.toUtf8());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void OAIGuestLinkRedeemResponse::fromJsonObject(QJsonObject json) {
+void OAIGuestLinkSessionResponse::fromJsonObject(QJsonObject json) {
     initializeModel();
 
-    Q_D(OAIGuestLinkRedeemResponse);
+    Q_D(OAIGuestLinkSessionResponse);
 
     d->permission_id_isValid = ::OpenAPI::fromJsonValue(d->permission_id, json[QString("permissionId")]);
     d->permission_id_isSet = !json[QString("permissionId")].isNull() && d->permission_id_isValid;
 }
 
-QString OAIGuestLinkRedeemResponse::asJson() const {
+QString OAIGuestLinkSessionResponse::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject OAIGuestLinkRedeemResponse::asJsonObject() const {
-    Q_D(const OAIGuestLinkRedeemResponse);
+QJsonObject OAIGuestLinkSessionResponse::asJsonObject() const {
+    Q_D(const OAIGuestLinkSessionResponse);
     if(!d){
         return {};
     }
@@ -97,23 +97,23 @@ QJsonObject OAIGuestLinkRedeemResponse::asJsonObject() const {
     return obj;
 }
 
-QString OAIGuestLinkRedeemResponse::getPermissionId() const {
-    Q_D(const OAIGuestLinkRedeemResponse);
+QString OAIGuestLinkSessionResponse::getPermissionId() const {
+    Q_D(const OAIGuestLinkSessionResponse);
     if(!d){
         return {};
     }
     return d->permission_id;
 }
-void OAIGuestLinkRedeemResponse::setPermissionId(const QString &permission_id) {
-    Q_D(OAIGuestLinkRedeemResponse);
+void OAIGuestLinkSessionResponse::setPermissionId(const QString &permission_id) {
+    Q_D(OAIGuestLinkSessionResponse);
     Q_ASSERT(d);
 
     d->permission_id = permission_id;
     d->permission_id_isSet = true;
 }
 
-bool OAIGuestLinkRedeemResponse::is_permission_id_Set() const{
-    Q_D(const OAIGuestLinkRedeemResponse);
+bool OAIGuestLinkSessionResponse::is_permission_id_Set() const{
+    Q_D(const OAIGuestLinkSessionResponse);
     if(!d){
         return false;
     }
@@ -121,16 +121,16 @@ bool OAIGuestLinkRedeemResponse::is_permission_id_Set() const{
     return d->permission_id_isSet;
 }
 
-bool OAIGuestLinkRedeemResponse::is_permission_id_Valid() const{
-    Q_D(const OAIGuestLinkRedeemResponse);
+bool OAIGuestLinkSessionResponse::is_permission_id_Valid() const{
+    Q_D(const OAIGuestLinkSessionResponse);
     if(!d){
         return false;
     }
     return d->permission_id_isValid;
 }
 
-bool OAIGuestLinkRedeemResponse::isSet() const {
-    Q_D(const OAIGuestLinkRedeemResponse);
+bool OAIGuestLinkSessionResponse::isSet() const {
+    Q_D(const OAIGuestLinkSessionResponse);
     if(!d){
         return false;
     }
@@ -144,8 +144,8 @@ bool OAIGuestLinkRedeemResponse::isSet() const {
     return isObjectUpdated;
 }
 
-bool OAIGuestLinkRedeemResponse::isValid() const {
-    Q_D(const OAIGuestLinkRedeemResponse);
+bool OAIGuestLinkSessionResponse::isValid() const {
+    Q_D(const OAIGuestLinkSessionResponse);
     if(!d){
         return false;
     }

@@ -39,8 +39,12 @@ void OAIGuestLinksApi::initializeServerConfigs() {
     QUrl("https://localhost:9200/graph"),
     "OpenCloud Development Setup",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("redeemGuestLink", defaultConf);
-    _serverIndices.insert("redeemGuestLink", 0);
+    _serverConfigs.insert("renewGuestLink", defaultConf);
+    _serverIndices.insert("renewGuestLink", 0);
+    _serverConfigs.insert("verifyGuestLinkPin", defaultConf);
+    _serverIndices.insert("verifyGuestLinkPin", 0);
+    _serverConfigs.insert("verifyGuestLinkToken", defaultConf);
+    _serverIndices.insert("verifyGuestLinkToken", 0);
 }
 
 /**
@@ -216,8 +220,8 @@ QString OAIGuestLinksApi::getParamStyleDelimiter(const QString &style, const QSt
     }
 }
 
-void OAIGuestLinksApi::redeemGuestLink(const OAIGuestLinkRedeemRequest &oai_guest_link_redeem_request) {
-    QString fullPath = QString(_serverConfigs["redeemGuestLink"][_serverIndices.value("redeemGuestLink")].URL()+"/v1beta1/extensions/org.libregraph/guestLinks/redeem");
+void OAIGuestLinksApi::renewGuestLink(const OAIGuestLinkRenewRequest &oai_guest_link_renew_request) {
+    QString fullPath = QString(_serverConfigs["renewGuestLink"][_serverIndices.value("renewGuestLink")].URL()+"/v1beta1/extensions/org.libregraph/guestLinks/renew");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
         QByteArray b64;
@@ -231,7 +235,7 @@ void OAIGuestLinksApi::redeemGuestLink(const OAIGuestLinkRedeemRequest &oai_gues
 
     {
 
-        QByteArray output = oai_guest_link_redeem_request.asJson().toUtf8();
+        QByteArray output = oai_guest_link_renew_request.asJson().toUtf8();
         input.request_body.append(output);
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
@@ -244,7 +248,7 @@ void OAIGuestLinksApi::redeemGuestLink(const OAIGuestLinkRedeemRequest &oai_gues
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIGuestLinksApi::redeemGuestLinkCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIGuestLinksApi::renewGuestLinkCallback);
     connect(this, &OAIGuestLinksApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -255,22 +259,137 @@ void OAIGuestLinksApi::redeemGuestLink(const OAIGuestLinkRedeemRequest &oai_gues
     worker->execute(&input);
 }
 
-void OAIGuestLinksApi::redeemGuestLinkCallback(OAIHttpRequestWorker *worker) {
+void OAIGuestLinksApi::renewGuestLinkCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAIGuestLinkRedeemResponse output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit redeemGuestLinkSignal(output);
-        emit redeemGuestLinkSignalFull(worker, output);
+        emit renewGuestLinkSignal();
+        emit renewGuestLinkSignalFull(worker);
     } else {
-        emit redeemGuestLinkSignalE(output, error_type, error_str);
-        emit redeemGuestLinkSignalEFull(worker, error_type, error_str);
+        emit renewGuestLinkSignalE(error_type, error_str);
+        emit renewGuestLinkSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIGuestLinksApi::verifyGuestLinkPin(const OAIGuestLinkVerifyPinRequest &oai_guest_link_verify_pin_request) {
+    QString fullPath = QString(_serverConfigs["verifyGuestLinkPin"][_serverIndices.value("verifyGuestLinkPin")].URL()+"/v1beta1/extensions/org.libregraph/guestLinks/verify/pin");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    {
+
+        QByteArray output = oai_guest_link_verify_pin_request.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIGuestLinksApi::verifyGuestLinkPinCallback);
+    connect(this, &OAIGuestLinksApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIGuestLinksApi::verifyGuestLinkPinCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIGuestLinkSessionResponse output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit verifyGuestLinkPinSignal(output);
+        emit verifyGuestLinkPinSignalFull(worker, output);
+    } else {
+        emit verifyGuestLinkPinSignalE(output, error_type, error_str);
+        emit verifyGuestLinkPinSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIGuestLinksApi::verifyGuestLinkToken(const OAIGuestLinkVerifyTokenRequest &oai_guest_link_verify_token_request) {
+    QString fullPath = QString(_serverConfigs["verifyGuestLinkToken"][_serverIndices.value("verifyGuestLinkToken")].URL()+"/v1beta1/extensions/org.libregraph/guestLinks/verify/token");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    {
+
+        QByteArray output = oai_guest_link_verify_token_request.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIGuestLinksApi::verifyGuestLinkTokenCallback);
+    connect(this, &OAIGuestLinksApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIGuestLinksApi::verifyGuestLinkTokenCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIGuestLinkSessionResponse output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit verifyGuestLinkTokenSignal(output);
+        emit verifyGuestLinkTokenSignalFull(worker, output);
+    } else {
+        emit verifyGuestLinkTokenSignalE(output, error_type, error_str);
+        emit verifyGuestLinkTokenSignalEFull(worker, error_type, error_str);
     }
 }
 

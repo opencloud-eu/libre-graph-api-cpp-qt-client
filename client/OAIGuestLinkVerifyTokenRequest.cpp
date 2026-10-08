@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 
-#include "OAIGuestLinkRedeemRequest.h"
+#include "OAIGuestLinkVerifyTokenRequest.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -24,37 +24,37 @@
 
 namespace OpenAPI {
 
-class OAIGuestLinkRedeemRequestPrivate {
-    friend class OAIGuestLinkRedeemRequest;
+class OAIGuestLinkVerifyTokenRequestPrivate {
+    friend class OAIGuestLinkVerifyTokenRequest;
 
      QString token;
      bool token_isSet;
      bool token_isValid;
 };
 
-OAIGuestLinkRedeemRequest::OAIGuestLinkRedeemRequest()
+OAIGuestLinkVerifyTokenRequest::OAIGuestLinkVerifyTokenRequest()
     : d_ptr()
 {
 }
 
-OAIGuestLinkRedeemRequest::OAIGuestLinkRedeemRequest(const OAIGuestLinkRedeemRequest& other)
+OAIGuestLinkVerifyTokenRequest::OAIGuestLinkVerifyTokenRequest(const OAIGuestLinkVerifyTokenRequest& other)
     : d_ptr(other.d_ptr)
 {
 }
 
-OAIGuestLinkRedeemRequest::OAIGuestLinkRedeemRequest(QString json)
+OAIGuestLinkVerifyTokenRequest::OAIGuestLinkVerifyTokenRequest(QString json)
     : d_ptr(nullptr)
 {
     this->fromJson(json);
 }
 
-OAIGuestLinkRedeemRequest::~OAIGuestLinkRedeemRequest() = default;
+OAIGuestLinkVerifyTokenRequest::~OAIGuestLinkVerifyTokenRequest() = default;
 
-void OAIGuestLinkRedeemRequest::initializeModel() {
+void OAIGuestLinkVerifyTokenRequest::initializeModel() {
     if (d_ptr == nullptr) {
-        d_ptr.reset(new OAIGuestLinkRedeemRequestPrivate{});
+        d_ptr.reset(new OAIGuestLinkVerifyTokenRequestPrivate{});
 
-        Q_D(OAIGuestLinkRedeemRequest);
+        Q_D(OAIGuestLinkVerifyTokenRequest);
 
 
         d->token_isSet = false;
@@ -62,31 +62,31 @@ void OAIGuestLinkRedeemRequest::initializeModel() {
     }
 }
 
-void OAIGuestLinkRedeemRequest::fromJson(QString jsonString) {
+void OAIGuestLinkVerifyTokenRequest::fromJson(QString jsonString) {
     QByteArray array(jsonString.toUtf8());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void OAIGuestLinkRedeemRequest::fromJsonObject(QJsonObject json) {
+void OAIGuestLinkVerifyTokenRequest::fromJsonObject(QJsonObject json) {
     initializeModel();
 
-    Q_D(OAIGuestLinkRedeemRequest);
+    Q_D(OAIGuestLinkVerifyTokenRequest);
 
     d->token_isValid = ::OpenAPI::fromJsonValue(d->token, json[QString("token")]);
     d->token_isSet = !json[QString("token")].isNull() && d->token_isValid;
 }
 
-QString OAIGuestLinkRedeemRequest::asJson() const {
+QString OAIGuestLinkVerifyTokenRequest::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject OAIGuestLinkRedeemRequest::asJsonObject() const {
-    Q_D(const OAIGuestLinkRedeemRequest);
+QJsonObject OAIGuestLinkVerifyTokenRequest::asJsonObject() const {
+    Q_D(const OAIGuestLinkVerifyTokenRequest);
     if(!d){
         return {};
     }
@@ -97,23 +97,23 @@ QJsonObject OAIGuestLinkRedeemRequest::asJsonObject() const {
     return obj;
 }
 
-QString OAIGuestLinkRedeemRequest::getToken() const {
-    Q_D(const OAIGuestLinkRedeemRequest);
+QString OAIGuestLinkVerifyTokenRequest::getToken() const {
+    Q_D(const OAIGuestLinkVerifyTokenRequest);
     if(!d){
         return {};
     }
     return d->token;
 }
-void OAIGuestLinkRedeemRequest::setToken(const QString &token) {
-    Q_D(OAIGuestLinkRedeemRequest);
+void OAIGuestLinkVerifyTokenRequest::setToken(const QString &token) {
+    Q_D(OAIGuestLinkVerifyTokenRequest);
     Q_ASSERT(d);
 
     d->token = token;
     d->token_isSet = true;
 }
 
-bool OAIGuestLinkRedeemRequest::is_token_Set() const{
-    Q_D(const OAIGuestLinkRedeemRequest);
+bool OAIGuestLinkVerifyTokenRequest::is_token_Set() const{
+    Q_D(const OAIGuestLinkVerifyTokenRequest);
     if(!d){
         return false;
     }
@@ -121,16 +121,16 @@ bool OAIGuestLinkRedeemRequest::is_token_Set() const{
     return d->token_isSet;
 }
 
-bool OAIGuestLinkRedeemRequest::is_token_Valid() const{
-    Q_D(const OAIGuestLinkRedeemRequest);
+bool OAIGuestLinkVerifyTokenRequest::is_token_Valid() const{
+    Q_D(const OAIGuestLinkVerifyTokenRequest);
     if(!d){
         return false;
     }
     return d->token_isValid;
 }
 
-bool OAIGuestLinkRedeemRequest::isSet() const {
-    Q_D(const OAIGuestLinkRedeemRequest);
+bool OAIGuestLinkVerifyTokenRequest::isSet() const {
+    Q_D(const OAIGuestLinkVerifyTokenRequest);
     if(!d){
         return false;
     }
@@ -144,8 +144,8 @@ bool OAIGuestLinkRedeemRequest::isSet() const {
     return isObjectUpdated;
 }
 
-bool OAIGuestLinkRedeemRequest::isValid() const {
-    Q_D(const OAIGuestLinkRedeemRequest);
+bool OAIGuestLinkVerifyTokenRequest::isValid() const {
+    Q_D(const OAIGuestLinkVerifyTokenRequest);
     if(!d){
         return false;
     }

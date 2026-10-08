@@ -79,8 +79,10 @@ add_library(client
     OAIGeohashDefinition.cpp
     OAIGroup.cpp
     OAIGuestLinkError.cpp
-    OAIGuestLinkRedeemRequest.cpp
-    OAIGuestLinkRedeemResponse.cpp
+    OAIGuestLinkRenewRequest.cpp
+    OAIGuestLinkSessionResponse.cpp
+    OAIGuestLinkVerifyPinRequest.cpp
+    OAIGuestLinkVerifyTokenRequest.cpp
     OAIHashes.cpp
     OAIIdentity.cpp
     OAIIdentitySet.cpp
@@ -242,8 +244,10 @@ set(HEADER
     OAIGeohashDefinition.h
     OAIGroup.h
     OAIGuestLinkError.h
-    OAIGuestLinkRedeemRequest.h
-    OAIGuestLinkRedeemResponse.h
+    OAIGuestLinkRenewRequest.h
+    OAIGuestLinkSessionResponse.h
+    OAIGuestLinkVerifyPinRequest.h
+    OAIGuestLinkVerifyTokenRequest.h
     OAIHashes.h
     OAIIdentity.h
     OAIIdentitySet.h

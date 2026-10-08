@@ -22,8 +22,10 @@
 #include "OAIOauth.h"
 
 #include "OAIGuestLinkError.h"
-#include "OAIGuestLinkRedeemRequest.h"
-#include "OAIGuestLinkRedeemResponse.h"
+#include "OAIGuestLinkRenewRequest.h"
+#include "OAIGuestLinkSessionResponse.h"
+#include "OAIGuestLinkVerifyPinRequest.h"
+#include "OAIGuestLinkVerifyTokenRequest.h"
 #include "OAIOdata_error.h"
 #include <QString>
 
@@ -64,9 +66,19 @@ public:
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
     /**
-    * @param[in]  oai_guest_link_redeem_request OAIGuestLinkRedeemRequest [required]
+    * @param[in]  oai_guest_link_renew_request OAIGuestLinkRenewRequest [required]
     */
-    void redeemGuestLink(const OAIGuestLinkRedeemRequest &oai_guest_link_redeem_request);
+    void renewGuestLink(const OAIGuestLinkRenewRequest &oai_guest_link_renew_request);
+
+    /**
+    * @param[in]  oai_guest_link_verify_pin_request OAIGuestLinkVerifyPinRequest [required]
+    */
+    void verifyGuestLinkPin(const OAIGuestLinkVerifyPinRequest &oai_guest_link_verify_pin_request);
+
+    /**
+    * @param[in]  oai_guest_link_verify_token_request OAIGuestLinkVerifyTokenRequest [required]
+    */
+    void verifyGuestLinkToken(const OAIGuestLinkVerifyTokenRequest &oai_guest_link_verify_token_request);
 
 
 private:
@@ -91,17 +103,27 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void redeemGuestLinkCallback(OAIHttpRequestWorker *worker);
+    void renewGuestLinkCallback(OAIHttpRequestWorker *worker);
+    void verifyGuestLinkPinCallback(OAIHttpRequestWorker *worker);
+    void verifyGuestLinkTokenCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void redeemGuestLinkSignal(OAIGuestLinkRedeemResponse summary);
+    void renewGuestLinkSignal();
+    void verifyGuestLinkPinSignal(OAIGuestLinkSessionResponse summary);
+    void verifyGuestLinkTokenSignal(OAIGuestLinkSessionResponse summary);
 
-    void redeemGuestLinkSignalFull(OAIHttpRequestWorker *worker, OAIGuestLinkRedeemResponse summary);
+    void renewGuestLinkSignalFull(OAIHttpRequestWorker *worker);
+    void verifyGuestLinkPinSignalFull(OAIHttpRequestWorker *worker, OAIGuestLinkSessionResponse summary);
+    void verifyGuestLinkTokenSignalFull(OAIHttpRequestWorker *worker, OAIGuestLinkSessionResponse summary);
 
-    void redeemGuestLinkSignalE(OAIGuestLinkRedeemResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void renewGuestLinkSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void verifyGuestLinkPinSignalE(OAIGuestLinkSessionResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void verifyGuestLinkTokenSignalE(OAIGuestLinkSessionResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
 
-    void redeemGuestLinkSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void renewGuestLinkSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void verifyGuestLinkPinSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void verifyGuestLinkTokenSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

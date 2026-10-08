@@ -14,13 +14,13 @@
  */
 
 /*
- * OAIGuestLinkError.h
+ * OAIGuestLinkRenewRequest.h
  *
- * Error returned by a guest link endpoint.
+ * Request body for renewing a guest link. Besides the share (permission) id, the previous guest link token or a (possibly expired) guest session cookie is required to authorize the renewal.
  */
 
-#ifndef OAIGuestLinkError_H
-#define OAIGuestLinkError_H
+#ifndef OAIGuestLinkRenewRequest_H
+#define OAIGuestLinkRenewRequest_H
 
 #include <QJsonObject>
 
@@ -32,46 +32,41 @@
 namespace OpenAPI {
 
 
-class OAIGuestLinkErrorPrivate;
+class OAIGuestLinkRenewRequestPrivate;
 
-class OAIGuestLinkError : public OAIObject {
+class OAIGuestLinkRenewRequest : public OAIObject {
 public:
-    OAIGuestLinkError();
-    OAIGuestLinkError(const OAIGuestLinkError &other);
-    OAIGuestLinkError(QString json);
-    ~OAIGuestLinkError() override;
+    OAIGuestLinkRenewRequest();
+    OAIGuestLinkRenewRequest(const OAIGuestLinkRenewRequest &other);
+    OAIGuestLinkRenewRequest(QString json);
+    ~OAIGuestLinkRenewRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    QString getErrorType() const;
-    void setErrorType(const QString &error_type);
-    bool is_error_type_Set() const;
-    bool is_error_type_Valid() const;
-
-    QString getMessage() const;
-    void setMessage(const QString &message);
-    bool is_message_Set() const;
-    bool is_message_Valid() const;
-
     QString getPermissionId() const;
     void setPermissionId(const QString &permission_id);
     bool is_permission_id_Set() const;
     bool is_permission_id_Valid() const;
+
+    QString getToken() const;
+    void setToken(const QString &token);
+    bool is_token_Set() const;
+    bool is_token_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
 private:
     void initializeModel();
-    Q_DECLARE_PRIVATE(OAIGuestLinkError)
-    QSharedPointer<OAIGuestLinkErrorPrivate> d_ptr;
+    Q_DECLARE_PRIVATE(OAIGuestLinkRenewRequest)
+    QSharedPointer<OAIGuestLinkRenewRequestPrivate> d_ptr;
 };
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIGuestLinkError)
+Q_DECLARE_METATYPE(OpenAPI::OAIGuestLinkRenewRequest)
 
-#endif // OAIGuestLinkError_H
+#endif // OAIGuestLinkRenewRequest_H

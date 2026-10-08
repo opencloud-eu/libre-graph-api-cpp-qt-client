@@ -14,13 +14,13 @@
  */
 
 /*
- * OAIGuestLinkError.h
+ * OAIGuestLinkSessionResponse.h
  *
- * Error returned by a guest link endpoint.
+ * Response body for a successful guest link authentication: the share (permission) id the guest was invited to. A session cookie is set via the Set-Cookie header.
  */
 
-#ifndef OAIGuestLinkError_H
-#define OAIGuestLinkError_H
+#ifndef OAIGuestLinkSessionResponse_H
+#define OAIGuestLinkSessionResponse_H
 
 #include <QJsonObject>
 
@@ -32,29 +32,19 @@
 namespace OpenAPI {
 
 
-class OAIGuestLinkErrorPrivate;
+class OAIGuestLinkSessionResponsePrivate;
 
-class OAIGuestLinkError : public OAIObject {
+class OAIGuestLinkSessionResponse : public OAIObject {
 public:
-    OAIGuestLinkError();
-    OAIGuestLinkError(const OAIGuestLinkError &other);
-    OAIGuestLinkError(QString json);
-    ~OAIGuestLinkError() override;
+    OAIGuestLinkSessionResponse();
+    OAIGuestLinkSessionResponse(const OAIGuestLinkSessionResponse &other);
+    OAIGuestLinkSessionResponse(QString json);
+    ~OAIGuestLinkSessionResponse() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
-
-    QString getErrorType() const;
-    void setErrorType(const QString &error_type);
-    bool is_error_type_Set() const;
-    bool is_error_type_Valid() const;
-
-    QString getMessage() const;
-    void setMessage(const QString &message);
-    bool is_message_Set() const;
-    bool is_message_Valid() const;
 
     QString getPermissionId() const;
     void setPermissionId(const QString &permission_id);
@@ -66,12 +56,12 @@ public:
 
 private:
     void initializeModel();
-    Q_DECLARE_PRIVATE(OAIGuestLinkError)
-    QSharedPointer<OAIGuestLinkErrorPrivate> d_ptr;
+    Q_DECLARE_PRIVATE(OAIGuestLinkSessionResponse)
+    QSharedPointer<OAIGuestLinkSessionResponsePrivate> d_ptr;
 };
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIGuestLinkError)
+Q_DECLARE_METATYPE(OpenAPI::OAIGuestLinkSessionResponse)
 
-#endif // OAIGuestLinkError_H
+#endif // OAIGuestLinkSessionResponse_H

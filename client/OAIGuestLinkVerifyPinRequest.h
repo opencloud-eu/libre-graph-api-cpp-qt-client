@@ -14,13 +14,13 @@
  */
 
 /*
- * OAIGuestLinkRedeemResponse.h
+ * OAIGuestLinkVerifyPinRequest.h
  *
- * Response body for a successful guest link redemption.
+ * Request body for verifying a guest link PIN.
  */
 
-#ifndef OAIGuestLinkRedeemResponse_H
-#define OAIGuestLinkRedeemResponse_H
+#ifndef OAIGuestLinkVerifyPinRequest_H
+#define OAIGuestLinkVerifyPinRequest_H
 
 #include <QJsonObject>
 
@@ -32,19 +32,24 @@
 namespace OpenAPI {
 
 
-class OAIGuestLinkRedeemResponsePrivate;
+class OAIGuestLinkVerifyPinRequestPrivate;
 
-class OAIGuestLinkRedeemResponse : public OAIObject {
+class OAIGuestLinkVerifyPinRequest : public OAIObject {
 public:
-    OAIGuestLinkRedeemResponse();
-    OAIGuestLinkRedeemResponse(const OAIGuestLinkRedeemResponse &other);
-    OAIGuestLinkRedeemResponse(QString json);
-    ~OAIGuestLinkRedeemResponse() override;
+    OAIGuestLinkVerifyPinRequest();
+    OAIGuestLinkVerifyPinRequest(const OAIGuestLinkVerifyPinRequest &other);
+    OAIGuestLinkVerifyPinRequest(QString json);
+    ~OAIGuestLinkVerifyPinRequest() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
+
+    QString getPin() const;
+    void setPin(const QString &pin);
+    bool is_pin_Set() const;
+    bool is_pin_Valid() const;
 
     QString getPermissionId() const;
     void setPermissionId(const QString &permission_id);
@@ -56,12 +61,12 @@ public:
 
 private:
     void initializeModel();
-    Q_DECLARE_PRIVATE(OAIGuestLinkRedeemResponse)
-    QSharedPointer<OAIGuestLinkRedeemResponsePrivate> d_ptr;
+    Q_DECLARE_PRIVATE(OAIGuestLinkVerifyPinRequest)
+    QSharedPointer<OAIGuestLinkVerifyPinRequestPrivate> d_ptr;
 };
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIGuestLinkRedeemResponse)
+Q_DECLARE_METATYPE(OpenAPI::OAIGuestLinkVerifyPinRequest)
 
-#endif // OAIGuestLinkRedeemResponse_H
+#endif // OAIGuestLinkVerifyPinRequest_H
