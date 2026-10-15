@@ -16,7 +16,7 @@
 /*
  * OAIGuestLinkSessionResponse.h
  *
- * Response body for a successful guest link authentication: the share (permission) id the guest was invited to. A session cookie is set via the Set-Cookie header.
+ * Response body for a successful guest link authentication: the share (permission) id the guest was invited to and the expiry of the guest session. A session cookie is set via the Set-Cookie header.
  */
 
 #ifndef OAIGuestLinkSessionResponse_H
@@ -24,6 +24,7 @@
 
 #include <QJsonObject>
 
+#include <QDateTime>
 #include <QString>
 
 #include "OAIEnum.h"
@@ -50,6 +51,11 @@ public:
     void setPermissionId(const QString &permission_id);
     bool is_permission_id_Set() const;
     bool is_permission_id_Valid() const;
+
+    QDateTime getExpirationDateTime() const;
+    void setExpirationDateTime(const QDateTime &expiration_date_time);
+    bool is_expiration_date_time_Set() const;
+    bool is_expiration_date_time_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

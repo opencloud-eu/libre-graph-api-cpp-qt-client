@@ -30,6 +30,10 @@ class OAIGuestLinkSessionResponsePrivate {
      QString permission_id;
      bool permission_id_isSet;
      bool permission_id_isValid;
+
+     QDateTime expiration_date_time;
+     bool expiration_date_time_isSet;
+     bool expiration_date_time_isValid;
 };
 
 OAIGuestLinkSessionResponse::OAIGuestLinkSessionResponse()
@@ -59,6 +63,9 @@ void OAIGuestLinkSessionResponse::initializeModel() {
 
         d->permission_id_isSet = false;
         d->permission_id_isValid = false;
+
+        d->expiration_date_time_isSet = false;
+        d->expiration_date_time_isValid = false;
     }
 }
 
@@ -76,6 +83,9 @@ void OAIGuestLinkSessionResponse::fromJsonObject(QJsonObject json) {
 
     d->permission_id_isValid = ::OpenAPI::fromJsonValue(d->permission_id, json[QString("permissionId")]);
     d->permission_id_isSet = !json[QString("permissionId")].isNull() && d->permission_id_isValid;
+
+    d->expiration_date_time_isValid = ::OpenAPI::fromJsonValue(d->expiration_date_time, json[QString("expirationDateTime")]);
+    d->expiration_date_time_isSet = !json[QString("expirationDateTime")].isNull() && d->expiration_date_time_isValid;
 }
 
 QString OAIGuestLinkSessionResponse::asJson() const {
@@ -93,6 +103,9 @@ QJsonObject OAIGuestLinkSessionResponse::asJsonObject() const {
     QJsonObject obj;
     if (d->permission_id_isSet) {
         obj.insert(QString("permissionId"), ::OpenAPI::toJsonValue(d->permission_id));
+    }
+    if (d->expiration_date_time_isSet) {
+        obj.insert(QString("expirationDateTime"), ::OpenAPI::toJsonValue(d->expiration_date_time));
     }
     return obj;
 }
@@ -129,6 +142,38 @@ bool OAIGuestLinkSessionResponse::is_permission_id_Valid() const{
     return d->permission_id_isValid;
 }
 
+QDateTime OAIGuestLinkSessionResponse::getExpirationDateTime() const {
+    Q_D(const OAIGuestLinkSessionResponse);
+    if(!d){
+        return {};
+    }
+    return d->expiration_date_time;
+}
+void OAIGuestLinkSessionResponse::setExpirationDateTime(const QDateTime &expiration_date_time) {
+    Q_D(OAIGuestLinkSessionResponse);
+    Q_ASSERT(d);
+
+    d->expiration_date_time = expiration_date_time;
+    d->expiration_date_time_isSet = true;
+}
+
+bool OAIGuestLinkSessionResponse::is_expiration_date_time_Set() const{
+    Q_D(const OAIGuestLinkSessionResponse);
+    if(!d){
+        return false;
+    }
+
+    return d->expiration_date_time_isSet;
+}
+
+bool OAIGuestLinkSessionResponse::is_expiration_date_time_Valid() const{
+    Q_D(const OAIGuestLinkSessionResponse);
+    if(!d){
+        return false;
+    }
+    return d->expiration_date_time_isValid;
+}
+
 bool OAIGuestLinkSessionResponse::isSet() const {
     Q_D(const OAIGuestLinkSessionResponse);
     if(!d){
@@ -137,6 +182,11 @@ bool OAIGuestLinkSessionResponse::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (d->permission_id_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->expiration_date_time_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -150,7 +200,7 @@ bool OAIGuestLinkSessionResponse::isValid() const {
         return false;
     }
     // only required properties are required for the object to be considered valid
-    return d->permission_id_isValid && true;
+    return d->permission_id_isValid && d->expiration_date_time_isValid && true;
 }
 
 } // namespace OpenAPI
