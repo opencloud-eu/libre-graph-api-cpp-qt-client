@@ -61,6 +61,11 @@ public:
     bool is_permission_id_Set() const;
     bool is_permission_id_Valid() const;
 
+    qint32 getRetryAfter() const;
+    void setRetryAfter(const qint32 &retry_after);
+    bool is_retry_after_Set() const;
+    bool is_retry_after_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 

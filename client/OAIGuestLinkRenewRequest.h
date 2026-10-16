@@ -16,7 +16,7 @@
 /*
  * OAIGuestLinkRenewRequest.h
  *
- * Request body for renewing a guest link. Besides the share (permission) id, the previous guest link token or a (possibly expired) guest session cookie is required to authorize the renewal.
+ * Request body for renewing a guest link. Only the share (permission) id is sent; the request is authorized by the guest session cookie when one is present.
  */
 
 #ifndef OAIGuestLinkRenewRequest_H
@@ -50,11 +50,6 @@ public:
     void setPermissionId(const QString &permission_id);
     bool is_permission_id_Set() const;
     bool is_permission_id_Valid() const;
-
-    QString getToken() const;
-    void setToken(const QString &token);
-    bool is_token_Set() const;
-    bool is_token_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

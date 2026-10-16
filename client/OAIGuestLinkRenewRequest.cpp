@@ -30,10 +30,6 @@ class OAIGuestLinkRenewRequestPrivate {
      QString permission_id;
      bool permission_id_isSet;
      bool permission_id_isValid;
-
-     QString token;
-     bool token_isSet;
-     bool token_isValid;
 };
 
 OAIGuestLinkRenewRequest::OAIGuestLinkRenewRequest()
@@ -63,9 +59,6 @@ void OAIGuestLinkRenewRequest::initializeModel() {
 
         d->permission_id_isSet = false;
         d->permission_id_isValid = false;
-
-        d->token_isSet = false;
-        d->token_isValid = false;
     }
 }
 
@@ -83,9 +76,6 @@ void OAIGuestLinkRenewRequest::fromJsonObject(QJsonObject json) {
 
     d->permission_id_isValid = ::OpenAPI::fromJsonValue(d->permission_id, json[QString("permissionId")]);
     d->permission_id_isSet = !json[QString("permissionId")].isNull() && d->permission_id_isValid;
-
-    d->token_isValid = ::OpenAPI::fromJsonValue(d->token, json[QString("token")]);
-    d->token_isSet = !json[QString("token")].isNull() && d->token_isValid;
 }
 
 QString OAIGuestLinkRenewRequest::asJson() const {
@@ -103,9 +93,6 @@ QJsonObject OAIGuestLinkRenewRequest::asJsonObject() const {
     QJsonObject obj;
     if (d->permission_id_isSet) {
         obj.insert(QString("permissionId"), ::OpenAPI::toJsonValue(d->permission_id));
-    }
-    if (d->token_isSet) {
-        obj.insert(QString("token"), ::OpenAPI::toJsonValue(d->token));
     }
     return obj;
 }
@@ -142,38 +129,6 @@ bool OAIGuestLinkRenewRequest::is_permission_id_Valid() const{
     return d->permission_id_isValid;
 }
 
-QString OAIGuestLinkRenewRequest::getToken() const {
-    Q_D(const OAIGuestLinkRenewRequest);
-    if(!d){
-        return {};
-    }
-    return d->token;
-}
-void OAIGuestLinkRenewRequest::setToken(const QString &token) {
-    Q_D(OAIGuestLinkRenewRequest);
-    Q_ASSERT(d);
-
-    d->token = token;
-    d->token_isSet = true;
-}
-
-bool OAIGuestLinkRenewRequest::is_token_Set() const{
-    Q_D(const OAIGuestLinkRenewRequest);
-    if(!d){
-        return false;
-    }
-
-    return d->token_isSet;
-}
-
-bool OAIGuestLinkRenewRequest::is_token_Valid() const{
-    Q_D(const OAIGuestLinkRenewRequest);
-    if(!d){
-        return false;
-    }
-    return d->token_isValid;
-}
-
 bool OAIGuestLinkRenewRequest::isSet() const {
     Q_D(const OAIGuestLinkRenewRequest);
     if(!d){
@@ -182,11 +137,6 @@ bool OAIGuestLinkRenewRequest::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (d->permission_id_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (d->token_isSet) {
             isObjectUpdated = true;
             break;
         }

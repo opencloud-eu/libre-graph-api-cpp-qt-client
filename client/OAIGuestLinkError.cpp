@@ -38,6 +38,10 @@ class OAIGuestLinkErrorPrivate {
      QString permission_id;
      bool permission_id_isSet;
      bool permission_id_isValid;
+
+     qint32 retry_after;
+     bool retry_after_isSet;
+     bool retry_after_isValid;
 };
 
 OAIGuestLinkError::OAIGuestLinkError()
@@ -73,6 +77,9 @@ void OAIGuestLinkError::initializeModel() {
 
         d->permission_id_isSet = false;
         d->permission_id_isValid = false;
+
+        d->retry_after_isSet = false;
+        d->retry_after_isValid = false;
     }
 }
 
@@ -96,6 +103,9 @@ void OAIGuestLinkError::fromJsonObject(QJsonObject json) {
 
     d->permission_id_isValid = ::OpenAPI::fromJsonValue(d->permission_id, json[QString("permissionId")]);
     d->permission_id_isSet = !json[QString("permissionId")].isNull() && d->permission_id_isValid;
+
+    d->retry_after_isValid = ::OpenAPI::fromJsonValue(d->retry_after, json[QString("retryAfter")]);
+    d->retry_after_isSet = !json[QString("retryAfter")].isNull() && d->retry_after_isValid;
 }
 
 QString OAIGuestLinkError::asJson() const {
@@ -119,6 +129,9 @@ QJsonObject OAIGuestLinkError::asJsonObject() const {
     }
     if (d->permission_id_isSet) {
         obj.insert(QString("permissionId"), ::OpenAPI::toJsonValue(d->permission_id));
+    }
+    if (d->retry_after_isSet) {
+        obj.insert(QString("retryAfter"), ::OpenAPI::toJsonValue(d->retry_after));
     }
     return obj;
 }
@@ -219,6 +232,38 @@ bool OAIGuestLinkError::is_permission_id_Valid() const{
     return d->permission_id_isValid;
 }
 
+qint32 OAIGuestLinkError::getRetryAfter() const {
+    Q_D(const OAIGuestLinkError);
+    if(!d){
+        return {};
+    }
+    return d->retry_after;
+}
+void OAIGuestLinkError::setRetryAfter(const qint32 &retry_after) {
+    Q_D(OAIGuestLinkError);
+    Q_ASSERT(d);
+
+    d->retry_after = retry_after;
+    d->retry_after_isSet = true;
+}
+
+bool OAIGuestLinkError::is_retry_after_Set() const{
+    Q_D(const OAIGuestLinkError);
+    if(!d){
+        return false;
+    }
+
+    return d->retry_after_isSet;
+}
+
+bool OAIGuestLinkError::is_retry_after_Valid() const{
+    Q_D(const OAIGuestLinkError);
+    if(!d){
+        return false;
+    }
+    return d->retry_after_isValid;
+}
+
 bool OAIGuestLinkError::isSet() const {
     Q_D(const OAIGuestLinkError);
     if(!d){
@@ -237,6 +282,11 @@ bool OAIGuestLinkError::isSet() const {
         }
 
         if (d->permission_id_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->retry_after_isSet) {
             isObjectUpdated = true;
             break;
         }

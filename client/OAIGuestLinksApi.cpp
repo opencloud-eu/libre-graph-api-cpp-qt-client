@@ -277,7 +277,7 @@ void OAIGuestLinksApi::renewGuestLinkCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIGuestLinksApi::verifyGuestLinkPin(const OAIGuestLinkVerifyPinRequest &oai_guest_link_verify_pin_request) {
+void OAIGuestLinksApi::verifyGuestLinkPin(const QString &__host_oc_guest_nonce, const OAIGuestLinkVerifyPinRequest &oai_guest_link_verify_pin_request) {
     QString fullPath = QString(_serverConfigs["verifyGuestLinkPin"][_serverIndices.value("verifyGuestLinkPin")].URL()+"/v1beta1/extensions/org.libregraph/guestLinks/verify/pin");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
@@ -294,6 +294,15 @@ void OAIGuestLinksApi::verifyGuestLinkPin(const OAIGuestLinkVerifyPinRequest &oa
 
         QByteArray output = oai_guest_link_verify_pin_request.asJson().toUtf8();
         input.request_body.append(output);
+    }
+    
+    {
+        if (QString("form").indexOf("form") == 0) {
+            if (!::OpenAPI::toStringValue(__host_oc_guest_nonce).isEmpty()) {
+                input.headers.insert("Cookie", "__Host-oc_guest_nonce="+::OpenAPI::toStringValue(__host_oc_guest_nonce));
+            }
+
+        }
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {

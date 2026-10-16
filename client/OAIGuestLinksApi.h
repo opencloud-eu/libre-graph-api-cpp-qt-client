@@ -71,9 +71,10 @@ public:
     void renewGuestLink(const OAIGuestLinkRenewRequest &oai_guest_link_renew_request);
 
     /**
+    * @param[in]  __host_oc_guest_nonce QString [required]
     * @param[in]  oai_guest_link_verify_pin_request OAIGuestLinkVerifyPinRequest [required]
     */
-    void verifyGuestLinkPin(const OAIGuestLinkVerifyPinRequest &oai_guest_link_verify_pin_request);
+    void verifyGuestLinkPin(const QString &__host_oc_guest_nonce, const OAIGuestLinkVerifyPinRequest &oai_guest_link_verify_pin_request);
 
     /**
     * @param[in]  oai_guest_link_verify_token_request OAIGuestLinkVerifyTokenRequest [required]
