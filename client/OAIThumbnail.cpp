@@ -46,6 +46,10 @@ class OAIThumbnailPrivate {
      qint32 width;
      bool width_isSet;
      bool width_isValid;
+
+     QString libre_graph_mime_type;
+     bool libre_graph_mime_type_isSet;
+     bool libre_graph_mime_type_isValid;
 };
 
 OAIThumbnail::OAIThumbnail()
@@ -87,6 +91,9 @@ void OAIThumbnail::initializeModel() {
 
         d->width_isSet = false;
         d->width_isValid = false;
+
+        d->libre_graph_mime_type_isSet = false;
+        d->libre_graph_mime_type_isValid = false;
     }
 }
 
@@ -116,6 +123,9 @@ void OAIThumbnail::fromJsonObject(QJsonObject json) {
 
     d->width_isValid = ::OpenAPI::fromJsonValue(d->width, json[QString("width")]);
     d->width_isSet = !json[QString("width")].isNull() && d->width_isValid;
+
+    d->libre_graph_mime_type_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_mime_type, json[QString("@libre.graph.mimeType")]);
+    d->libre_graph_mime_type_isSet = !json[QString("@libre.graph.mimeType")].isNull() && d->libre_graph_mime_type_isValid;
 }
 
 QString OAIThumbnail::asJson() const {
@@ -145,6 +155,9 @@ QJsonObject OAIThumbnail::asJsonObject() const {
     }
     if (d->width_isSet) {
         obj.insert(QString("width"), ::OpenAPI::toJsonValue(d->width));
+    }
+    if (d->libre_graph_mime_type_isSet) {
+        obj.insert(QString("@libre.graph.mimeType"), ::OpenAPI::toJsonValue(d->libre_graph_mime_type));
     }
     return obj;
 }
@@ -309,6 +322,38 @@ bool OAIThumbnail::is_width_Valid() const{
     return d->width_isValid;
 }
 
+QString OAIThumbnail::getLibreGraphMimeType() const {
+    Q_D(const OAIThumbnail);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_mime_type;
+}
+void OAIThumbnail::setLibreGraphMimeType(const QString &libre_graph_mime_type) {
+    Q_D(OAIThumbnail);
+    Q_ASSERT(d);
+
+    d->libre_graph_mime_type = libre_graph_mime_type;
+    d->libre_graph_mime_type_isSet = true;
+}
+
+bool OAIThumbnail::is_libre_graph_mime_type_Set() const{
+    Q_D(const OAIThumbnail);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_mime_type_isSet;
+}
+
+bool OAIThumbnail::is_libre_graph_mime_type_Valid() const{
+    Q_D(const OAIThumbnail);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_mime_type_isValid;
+}
+
 bool OAIThumbnail::isSet() const {
     Q_D(const OAIThumbnail);
     if(!d){
@@ -337,6 +382,11 @@ bool OAIThumbnail::isSet() const {
         }
 
         if (d->width_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->libre_graph_mime_type_isSet) {
             isObjectUpdated = true;
             break;
         }

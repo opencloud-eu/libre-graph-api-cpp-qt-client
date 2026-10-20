@@ -71,6 +71,11 @@ public:
     bool is_width_Set() const;
     bool is_width_Valid() const;
 
+    QString getLibreGraphMimeType() const;
+    void setLibreGraphMimeType(const QString &libre_graph_mime_type);
+    bool is_libre_graph_mime_type_Set() const;
+    bool is_libre_graph_mime_type_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
