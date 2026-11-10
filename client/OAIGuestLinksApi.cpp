@@ -39,6 +39,8 @@ void OAIGuestLinksApi::initializeServerConfigs() {
     QUrl("https://localhost:9200/graph"),
     "OpenCloud Development Setup",
     QMap<QString, OAIServerVariable>()));
+    _serverConfigs.insert("logoutGuestLink", defaultConf);
+    _serverIndices.insert("logoutGuestLink", 0);
     _serverConfigs.insert("renewGuestLink", defaultConf);
     _serverIndices.insert("renewGuestLink", 0);
     _serverConfigs.insert("verifyGuestLinkPin", defaultConf);
@@ -217,6 +219,59 @@ QString OAIGuestLinksApi::getParamStyleDelimiter(const QString &style, const QSt
 
     } else {
         return "none";
+    }
+}
+
+void OAIGuestLinksApi::logoutGuestLink() {
+    QString fullPath = QString(_serverConfigs["logoutGuestLink"][_serverIndices.value("logoutGuestLink")].URL()+"/v1beta1/extensions/org.libregraph/guestLinks/logout");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIGuestLinksApi::logoutGuestLinkCallback);
+    connect(this, &OAIGuestLinksApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIGuestLinksApi::logoutGuestLinkCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit logoutGuestLinkSignal();
+        emit logoutGuestLinkSignalFull(worker);
+    } else {
+        emit logoutGuestLinkSignalE(error_type, error_str);
+        emit logoutGuestLinkSignalEFull(worker, error_type, error_str);
     }
 }
 

@@ -65,6 +65,9 @@ public:
     QString getParamStyleSuffix(const QString &style);
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
+
+    void logoutGuestLink();
+
     /**
     * @param[in]  oai_guest_link_renew_request OAIGuestLinkRenewRequest [required]
     */
@@ -104,24 +107,29 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
+    void logoutGuestLinkCallback(OAIHttpRequestWorker *worker);
     void renewGuestLinkCallback(OAIHttpRequestWorker *worker);
     void verifyGuestLinkPinCallback(OAIHttpRequestWorker *worker);
     void verifyGuestLinkTokenCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
+    void logoutGuestLinkSignal();
     void renewGuestLinkSignal();
     void verifyGuestLinkPinSignal(OAIGuestLinkSessionResponse summary);
     void verifyGuestLinkTokenSignal(OAIGuestLinkSessionResponse summary);
 
+    void logoutGuestLinkSignalFull(OAIHttpRequestWorker *worker);
     void renewGuestLinkSignalFull(OAIHttpRequestWorker *worker);
     void verifyGuestLinkPinSignalFull(OAIHttpRequestWorker *worker, OAIGuestLinkSessionResponse summary);
     void verifyGuestLinkTokenSignalFull(OAIHttpRequestWorker *worker, OAIGuestLinkSessionResponse summary);
 
+    void logoutGuestLinkSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void renewGuestLinkSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void verifyGuestLinkPinSignalE(OAIGuestLinkSessionResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void verifyGuestLinkTokenSignalE(OAIGuestLinkSessionResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
 
+    void logoutGuestLinkSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void renewGuestLinkSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void verifyGuestLinkPinSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void verifyGuestLinkTokenSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
